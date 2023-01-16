@@ -3,16 +3,22 @@
 Multiple ERP42 vehicle simulator (Based on Gazebo Sim)
 
 ## TODO
-- [ ] virtual frame braodcaster gitsubmodule로 교체
 
-- [ ] python 기반 simulation control GUI 노드 작성
-- [ ] python rich library 기반으로 GUI 교체
+[TODO Board (Notion)](https://www.notion.so/59bdfdc028a84c6ebcc4a95b785d6802?v=1305e9574541454bb6cb67a3c8cc4128&p=043e1a65f76d4438a363625f85cc1f7c&pm=s)
+
 
 ## How To Use
 
 ### Build and requirements
 
 ```bash
+# Download and update gitsubmodule
+$ cd (your ros workspace)/src
+$ git clone https://github.com/Yonsei-AI-Racing/erp42_simulator.git
+$ git submodule init
+$ git submodule update
+
+# Build packages
 $ cd (your ros workspace)
 $ catkin_make
 ```
@@ -44,13 +50,8 @@ $ roslaunch erp42_vehicle_gazebo erp42_navigation_demo.launch
 작업중 (나성재 연구원 연락)
 ```
 
-## Package tree
+## 그 외 기타 설명
 
-[erp42_gazebo](erp42_gazebo)
-> Gazebo simulator, vehicle/world model, gazebo controller
+[ERP42 simulator 패키지 구조](./docs/package_tree.md)
 
-[erp42_navigation](erp42_navigation)
-> Demo package for gazebo erp42 simulation
-
-[virtual_frame_broadcaster](virtual_frame_broadcaster)
-> Tools for 
+[gitsubmodule 관련 사용 가이드](./docs/howtouse_gitsubmodule.md)
