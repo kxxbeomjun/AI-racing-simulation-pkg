@@ -12,3 +12,7 @@ find_package(catkin REQUIRED
 # )
 
 catkin_package()
+
+catkin_install_python(PROGRAMS scripts/erp42_sim_manager.py
+    DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
