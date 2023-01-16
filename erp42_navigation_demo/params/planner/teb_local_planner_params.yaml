@@ -1,0 +1,101 @@
+TebLocalPlannerROS:
+
+ odom_topic: odom
+    
+ # Trajectory
+  
+ teb_autosize: True
+ dt_ref: 0.3
+ dt_hysteresis: 0.1
+ max_global_plan_lookahead_dist: 15
+ max_samples: 50
+ min_samples: 3
+ global_plan_overwrite_orientation: True
+ allow_init_with_backwards_motion: False
+ feasibility_check_no_poses: 0 # 5
+    
+ # Robot
+         
+ max_vel_x: 5.56 #need to be modified (walking speed: 1.5 / EPR42 MAX 5.56)
+ max_vel_x_backwards: 0.5  # 0.11 -> 0.5 0719
+ max_vel_y: 0.0
+ max_vel_theta: 1.665 # 4713 349  => max_vel_x / min_turning_radius ( w= v / R )
+#  acc_lim_x: 30.0 # need to be modified
+ acc_lim_theta: 0.75 # need to be modified
+ min_turning_radius: 3.34 # 2.04 Min turning radius of the carlike robot (compute value using a model or adjust with rqt_reconfigure manually) need to be modified. wheelbase / tan(max steer) 2.4 / 3.34
+ wheelbase: 1.22   
+ cmd_angle_instead_rotvel: True
+
+ footprint_model:
+    type: "two_circles"
+    front_offset: 1.0
+    front_radius: 0.8
+    rear_offset: 0.1
+    rear_radius: 0.8
+ # GoalTolerance
+    
+ xy_goal_tolerance: 0.5
+ yaw_goal_tolerance: 0.5
+ free_goal_vel: False
+    
+ # Obstacles
+    
+ min_obstacle_dist: 0.2
+ inflation_dist: 0.8
+ include_costmap_obstacles: True
+ include_dynamic_obstacles: True
+ costmap_obstacles_behind_robot_dist: 1.5
+ obstacle_poses_affected: 60
+ legacy_obstacle_association: false        # The strategy of connecting trajectory poses with obstacles for optimization has been modified. You can switch to the old/previous strategy by setting this parameter to true. Old strategy: for each obstacle, find the nearest TEB pose; new strategy: for each teb pose, find only "relevant" obstacles.
+ obstacle_association_force_inclusion_factor: 1.5  #The non-legacy obstacle association strategy tries to connect only relevant obstacles with the discretized trajectory during optimization. But all obstacles within a specifed distance are forced to be included
+ obstacle_association_cutoff_factor: 5
+ costmap_converter_plugin: ""
+
+ # Optimization
+    
+ no_inner_iterations: 5                    # Number of actual solver iterations called in each outerloop iteration. See param no_outer_iterations.
+ no_outer_iterations: 4
+ penalty_epsilon: 0.1                      # Add a small safety margin to penalty functions for hard-constraint approximations.
+ weight_max_vel_x: 2                       # Optimization weight for satisfying the maximum allowed translational velocity.
+ weight_max_vel_y: 1
+ weight_max_vel_theta: 1                   # Optimization weight for satisfying the maximum allowed angular velocity.
+ weight_acc_lim_x: 0                      # Optimization weight for satisfying the maximum allowed translational acceleration.
+ weight_acc_lim_y: 0
+ weight_acc_lim_theta: 1                   # Optimization weight for satisfying the maximum allowed angular acceleration.
+ weight_kinematics_nh: 1000                   # 
+ weight_kinematics_forward_drive: 500        # Optimization weight for forcing the robot to choose only forward directions (positive transl. velocities).
+ weight_kinematics_turning_radius: 1       # Optimization weight for enforcing a minimum turning radius (only for carlike robots).
+ weight_optimaltime: 1                     # Optimization weight for contracting the trajectory w.r.t transition/execution time.
+ weight_obstacle: 100                      # Optimization weight for keeping a minimum distance from obstacles.
+ weight_dynamic_obstacle: 100
+ weight_dynamic_obstacle_inflation: 0.1
+ weight_viapoint: 1.0                       # Optimization weight for tracking global trajectory 1.0
+ weight_inflation: 0.1                    # Optimization weight for the inflation penalty (should be small).
+ weight_adapt_factor: 2.0                  # Some special weights (currently weight_obstacle) are repeatedly scaled by this factor in each outer TEB iteration.
+ weight_shortest_path: 0
+
+ enable_homotopy_class_planning: False
+ enable_multithreading: True
+ simple_exploration: False
+ max_number_classes: 2
+ selection_cost_hysteresis: 1.0
+ selection_obst_cost_scale: 100.0
+ selection_alternative_time_cost: False
+ 
+ roadmap_graph_no_samples: 15
+ roadmap_graph_area_width: 5
+ h_signature_prescaler: 0.5
+ h_signature_threshold: 0.1
+ obstacle_keypoint_offset: 0.1
+ obstacle_heading_threshold: 1.0
+ visualize_hc_graph: False
+
+# Recovery
+ 
+ shrink_horizon_backup: True
+ shrink_horizon_min_duration: 10
+ oscillation_recovery: True
+ oscillation_v_eps: 0.1
+ oscillation_omega_eps: 0.1
+ oscillation_recovery_min_duration: 10
+ oscillation_filter_duration: 10

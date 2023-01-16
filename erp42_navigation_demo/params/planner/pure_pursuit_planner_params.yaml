@@ -1,0 +1,31 @@
+
+PurePursuitPlannerROS:
+
+  sim_time: 0.2
+  # sim_granularity: 0.025
+  # angular_sim_granularity: 0.1
+
+  # path_distance_bias: 0.6
+  # goal_distance_bias: 0.8
+  # occdist_scale: 0.01
+  # twirling_scale: 0.0
+
+  # stop_time_buffer: 0.2
+  # oscillation_reset_dist: 0.05
+  # oscillation_reset_angle: 0.2
+
+  # wheel_base: 0.0
+  look_ahead_distance: 0.6
+  vel_ref: 0.8
+  prune_plan: False
+
+  # lpf_gain: 0.5
+  # wx: 1.0
+  # wy: 1.0
+
+  # vx_samples: 3
+  # vy_samples: 10
+  # vth_samples: 20
+
+  # use_pure_pursuit: True
+  # restore_defaults: False

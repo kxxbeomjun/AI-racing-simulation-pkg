@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- Arguments -->
+    <arg name="move_forward_only" default="true"/>
+    <arg name="cmd_vel_topic" default="cmd_vel_real" />
+    <arg name="odom_topic" default="ground_truth_pose" />
+
+    <group ns="/erp42_1" >
+        <!-- move_base -->
+        <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+            <rosparam file="$(find erp42_navigation_demo)/params/costmap/costmap_common_params.yaml" command="load" ns="global_costmap" />
+            <rosparam file="$(find erp42_navigation_demo)/params/costmap/costmap_common_params.yaml" command="load" ns="local_costmap" />
+            <rosparam file="$(find erp42_navigation_demo)/params/costmap/local_costmap_params.yaml" command="load" />
+            <rosparam file="$(find erp42_navigation_demo)/params/costmap/global_costmap_params.yaml" command="load" />
+            <rosparam file="$(find erp42_navigation_demo)/params/move_base_params.yaml" command="load" />
+            <rosparam file="$(find erp42_navigation_demo)/params/planner/regulated_pure_pursuit_planner_params.yaml" command="load" />
+
+            <param name="base_global_planner" value="global_planner/GlobalPlanner" />
+            <param name="planner_frequency" value="10.0" />
+            <param name="planner_patience" value="5.0" />
+
+            <param name="base_local_planner" value="regulated_pure_pursuit_controller/RegulatedPurePursuitController" />
+            <param name="controller_frequency" value="20.0" />
+            <param name="controller_patience" value="30.0" />
+
+            <remap from="cmd_vel" to="$(arg cmd_vel_topic)"/>
+            <remap from="odom" to="$(arg odom_topic)"/>
+
+            <param name="clearing_rotation_allowed" value="false" /> <!-- Our carlike robot is not able to rotate in place -->
+        </node>
+
+        <!-- Publish delay -->
+        <node pkg="erp42_gazebo_control" name="delay_publish" type="delay_publish.py" respawn="false" />
+
+        <!-- Virtual frame broadcaster -->
+        <include file="$(find virtual_frame_broadcaster)/launch/virtual_frame_broadcaster.launch" />
+
+    </group>
+</launch>

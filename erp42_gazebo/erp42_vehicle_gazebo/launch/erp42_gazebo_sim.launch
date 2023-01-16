@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<launch>
+
+    <!-- Simulator configuration -->
+    <arg name="gui" default="false" />
+    <arg name="open_rviz" default="true"/>
+    <arg name="rviz_file" default="$(find erp42_vehicle_gazebo)/rviz/erp42_sim_basic.rviz" />
+    <arg name="use_sim_time" default="true"/>
+
+    <arg name="map_name" default="sunmoon" />
+
+    <!-- Vehicle configuration -->
+    <arg name="total_vehicle_num" default="1" />
+
+    <!-- Launch gazebo sim and load track -->
+    <include file="$(find erp42_vehicle_gazebo)/launch/erp42_gazebo_track.launch">
+        <arg name="gui" value="$(arg gui)"/>
+        <arg name="open_rviz" value="$(arg open_rviz)"/>
+        <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+        <arg name="map_name" value="$(arg map_name)"/>
+    </include>
+    
+    <!-- Load ERP42 Vehicles -->
+    <include file="$(find erp42_vehicle_gazebo)/launch/erp42_gazebo_single_vehicle.launch">
+        <arg name="total_vehicle_num" value="$(eval arg('total_vehicle_num'))"/>
+        <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+    </include>
+
+    <!-- Load ERP42 Controller -->
+
+</launch>

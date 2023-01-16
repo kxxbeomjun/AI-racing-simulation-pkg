@@ -1,0 +1,957 @@
+<?xml version='1.0'?>
+<sdf version='1.6'>
+  <model name='sunmmon'>
+    <link name='link_1'>
+      <inertial>
+        <mass>1</mass>
+        <inertia>
+          <ixx>0.166667</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.166667</iyy>
+          <iyz>0</iyz>
+          <izz>0.166667</izz>
+        </inertia>
+      </inertial>
+      <pose frame=''>0 0 0 0 -0 0</pose>
+      <visual name='visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <polyline>
+            <height>1</height>
+            <point>221.594 13.1596</point>
+            <point>221.376 14.1853</point>
+            <point>221.228 14.9802</point>
+            <point>221.061 15.6927</point>
+            <point>220.782 16.4715</point>
+            <point>220.299 17.4652</point>
+            <point>218.9 20.6174</point>
+            <point>217.574 23.1683</point>
+            <point>215.087 25.1266</point>
+            <point>210.202 26.5009</point>
+            <point>201.684 27.3</point>
+            <point>178.449 28.0161</point>
+            <point>156.485 28.0373</point>
+            <point>135.768 27.6018</point>
+            <point>116.276 26.9476</point>
+            <point>97.987 26.3127</point>
+            <point>87.1676 25.8623</point>
+            <point>74.8166 25.2082</point>
+            <point>61.9665 24.4977</point>
+            <point>49.6499 23.878</point>
+            <point>38.8992 23.4963</point>
+            <point>30.0445 23.3892</point>
+            <point>22.5032 23.4315</point>
+            <point>15.9381 23.5283</point>
+            <point>10.0122 23.5845</point>
+            <point>4.38831 23.505</point>
+            <point>-1.51008 23.291</point>
+            <point>-7.55135 23.0484</point>
+            <point>-13.0101 22.8393</point>
+            <point>-17.161 22.7256</point>
+            <point>-19.2787 22.7695</point>
+            <point>-21.9123 23.0731</point>
+            <point>-24.8629 23.3742</point>
+            <point>-27.8009 23.9411</point>
+            <point>-30.397 25.042</point>
+            <point>-32.3215 26.9451</point>
+            <point>-37.0438 33.6136</point>
+            <point>-41.2584 37.8788</point>
+            <point>-45.1271 40.5518</point>
+            <point>-48.8115 42.4436</point>
+            <point>-52.4732 44.3652</point>
+            <point>-55.1814 45.7696</point>
+            <point>-58.0392 46.8183</point>
+            <point>-61.2549 47.5946</point>
+            <point>-65.0368 48.1819</point>
+            <point>-69.5931 48.6634</point>
+            <point>-73.952 48.9721</point>
+            <point>-79.4713 49.0854</point>
+            <point>-87.9667 48.9809</point>
+            <point>-101.254 48.6363</point>
+            <point>-121.148 48.0292</point>
+            <point>-129.211 47.785</point>
+            <point>-138.778 47.509</point>
+            <point>-149.052 47.2231</point>
+            <point>-159.237 46.9495</point>
+            <point>-168.538 46.7104</point>
+            <point>-192.788 46.1331</point>
+            <point>-208.359 45.5776</point>
+            <point>-217.201 44.6199</point>
+            <point>-221.264 42.8356</point>
+            <point>-222.498 39.8008</point>
+            <point>-222.577 33.3136</point>
+            <point>-222.434 19.5294</point>
+            <point>-222.127 1.85567</point>
+            <point>-221.716 -16.3001</point>
+            <point>-221.26 -31.5303</point>
+            <point>-221.092 -44.6282</point>
+            <point>-219.651 -46.2426</point>
+            <point>-217.924 -47.8103</point>
+            <point>-215.551 -48.73</point>
+            <point>-211.607 -49.0854</point>
+            <point>-205.164 -48.96</point>
+            <point>-195.296 -48.4373</point>
+            <point>-182.511 -47.7177</point>
+            <point>-170.051 -47.0844</point>
+            <point>-156.219 -46.461</point>
+            <point>-139.319 -45.7709</point>
+            <point>-117.653 -44.9376</point>
+            <point>-96.8805 -44.0515</point>
+            <point>-81.5218 -43.1922</point>
+            <point>-70.8056 -42.3666</point>
+            <point>-63.9604 -41.5818</point>
+            <point>-60.2147 -40.845</point>
+            <point>-57.4478 -40.1432</point>
+            <point>-54.521 -39.436</point>
+            <point>-51.5886 -38.5305</point>
+            <point>-48.8049 -37.2339</point>
+            <point>-46.324 -35.3533</point>
+            <point>-44.2835 -33.5552</point>
+            <point>-42.0183 -31.8391</point>
+            <point>-39.4254 -29.9416</point>
+            <point>-36.4018 -27.5993</point>
+            <point>-32.8446 -24.5486</point>
+            <point>-30.574 -22.2179</point>
+            <point>-28.819 -20.0157</point>
+            <point>-27.3357 -18.0408</point>
+            <point>-25.8808 -16.3922</point>
+            <point>-24.2104 -15.1686</point>
+            <point>-21.704 -14.6806</point>
+            <point>-16.5109 -14.7217</point>
+            <point>-7.218 -14.9705</point>
+            <point>7.58794 -15.1059</point>
+            <point>29.3201 -14.8064</point>
+            <point>51.5132 -14.3095</point>
+            <point>77.1408 -13.785</point>
+            <point>103.789 -13.2472</point>
+            <point>129.042 -12.7105</point>
+            <point>150.486 -12.1895</point>
+            <point>188.77 -10.8188</point>
+            <point>208.876 -9.3731</point>
+            <point>216.666 -7.83631</point>
+            <point>218.003 -6.19218</point>
+            <point>218.749 -4.42448</point>
+            <point>220.061 -3.29205</point>
+            <point>221.011 -2.09851</point>
+            <point>221.682 -0.670066</point>
+            <point>222.154 1.16704</point>
+            <point>222.51 3.5866</point>
+            <point>222.577 5.07964</point>
+            <point>222.501 6.96938</point>
+            <point>222.301 9.06991</point>
+            <point>221.992 11.1953</point>
+            <point>221.594 13.1596</point>
+          </polyline>
+          <polyline>
+            <height>1</height>
+            <point>214.131 12.3661</point>
+            <point>213.846 13.1205</point>
+            <point>213.487 13.7177</point>
+            <point>212.999 14.2149</point>
+            <point>212.324 14.6691</point>
+            <point>211.407 15.1376</point>
+            <point>208.619 16.2373</point>
+            <point>205.337 16.935</point>
+            <point>200.7 17.2982</point>
+            <point>193.846 17.3944</point>
+            <point>183.913 17.2911</point>
+            <point>163.775 16.9671</point>
+            <point>143.967 16.6195</point>
+            <point>124.757 16.2532</point>
+            <point>106.416 15.8734</point>
+            <point>89.2129 15.4853</point>
+            <point>79.146 15.2569</point>
+            <point>67.7149 15.0127</point>
+            <point>55.8397 14.7715</point>
+            <point>44.4407 14.552</point>
+            <point>34.438 14.3727</point>
+            <point>25.0337 14.2069</point>
+            <point>15.2987 14.0245</point>
+            <point>5.95684 13.8399</point>
+            <point>-2.26786 13.6673</point>
+            <point>-8.65155 13.5212</point>
+            <point>-13.7639 13.4147</point>
+            <point>-18.4526 13.3524</point>
+            <point>-22.411 13.3355</point>
+            <point>-25.3323 13.3654</point>
+            <point>-26.9099 13.4433</point>
+            <point>-29.1089 13.9076</point>
+            <point>-31.2397 14.7122</point>
+            <point>-33.2374 15.8209</point>
+            <point>-35.0368 17.1977</point>
+            <point>-36.5729 18.8065</point>
+            <point>-40.7015 23.7987</point>
+            <point>-43.9589 27.3765</point>
+            <point>-46.7606 29.9168</point>
+            <point>-49.5223 31.7962</point>
+            <point>-52.6593 33.3917</point>
+            <point>-55.1528 34.4102</point>
+            <point>-57.7329 35.1927</point>
+            <point>-60.6299 35.7865</point>
+            <point>-64.0739 36.2389</point>
+            <point>-68.2953 36.5969</point>
+            <point>-72.3707 36.8179</point>
+            <point>-77.531 36.899</point>
+            <point>-85.4738 36.8242</point>
+            <point>-97.8967 36.5776</point>
+            <point>-116.497 36.1432</point>
+            <point>-124.036 35.9685</point>
+            <point>-132.98 35.7709</point>
+            <point>-142.586 35.5663</point>
+            <point>-152.109 35.3706</point>
+            <point>-160.804 35.1995</point>
+            <point>-183.484 34.6873</point>
+            <point>-198.06 34.0535</point>
+            <point>-206.347 33.0861</point>
+            <point>-210.163 31.5731</point>
+            <point>-211.324 29.3024</point>
+            <point>-211.398 24.6605</point>
+            <point>-211.264 14.7973</point>
+            <point>-210.977 2.15084</point>
+            <point>-210.593 -10.8405</point>
+            <point>-210.166 -21.7385</point>
+            <point>-209.556 -34.5902</point>
+            <point>-208.209 -35.7454</point>
+            <point>-206.594 -36.8672</point>
+            <point>-204.376 -37.5253</point>
+            <point>-200.689 -37.7796</point>
+            <point>-194.665 -37.6899</point>
+            <point>-185.438 -37.3158</point>
+            <point>-173.485 -36.8009</point>
+            <point>-161.835 -36.3478</point>
+            <point>-148.903 -35.9017</point>
+            <point>-133.102 -35.4079</point>
+            <point>-112.846 -34.8117</point>
+            <point>-93.5658 -34.2264</point>
+            <point>-79.5439 -33.728</point>
+            <point>-69.9278 -33.2762</point>
+            <point>-63.8656 -32.8311</point>
+            <point>-60.5051 -32.3527</point>
+            <point>-57.8413 -31.5921</point>
+            <point>-54.9216 -30.4699</point>
+            <point>-51.9612 -29.0865</point>
+            <point>-49.1752 -27.5425</point>
+            <point>-46.7789 -25.9385</point>
+            <point>-44.9082 -24.4085</point>
+            <point>-42.9493 -22.5589</point>
+            <point>-40.8775 -20.3632</point>
+            <point>-38.668 -17.7953</point>
+            <point>-36.2959 -14.8289</point>
+            <point>-34.6931 -12.9</point>
+            <point>-33.1172 -11.2915</point>
+            <point>-31.5354 -9.97638</point>
+            <point>-29.915 -8.9273</point>
+            <point>-28.2233 -8.11706</point>
+            <point>-25.8341 -7.57642</point>
+            <point>-20.8696 -7.14929</point>
+            <point>-12.0507 -6.78249</point>
+            <point>1.90142 -6.42282</point>
+            <point>22.2658 -6.01708</point>
+            <point>42.9814 -5.6253</point>
+            <point>66.8611 -5.16354</point>
+            <point>91.6789 -4.67557</point>
+            <point>115.208 -4.20517</point>
+            <point>135.224 -3.7961</point>
+            <point>172.31 -3.02081</point>
+            <point>194.189 -2.47652</point>
+            <point>205.15 -1.96188</point>
+            <point>209.482 -1.27556</point>
+            <point>211.471 -0.216228</point>
+            <point>212.698 0.594077</point>
+            <point>213.586 1.44812</point>
+            <point>214.213 2.47023</point>
+            <point>214.655 3.78478</point>
+            <point>214.987 5.51609</point>
+            <point>215.05 6.58443</point>
+            <point>214.979 7.93664</point>
+            <point>214.791 9.43967</point>
+            <point>214.503 10.9605</point>
+            <point>214.131 12.366</point>
+          </polyline>
+          <polyline>
+            <height>1</height>
+            <point>206.84 6.28351</point>
+            <point>205.15 5.88044</point>
+            <point>200.553 5.55632</point>
+            <point>192.269 5.28566</point>
+            <point>179.516 5.043</point>
+            <point>161.516 4.80284</point>
+            <point>148.988 4.67822</point>
+            <point>141.272 4.72399</point>
+            <point>137.224 5.02529</point>
+            <point>135.7 5.66724</point>
+            <point>135.557 6.735</point>
+            <point>135.67 7.30857</point>
+            <point>135.925 7.68601</point>
+            <point>136.455 7.92854</point>
+            <point>137.394 8.09739</point>
+            <point>138.875 8.25376</point>
+            <point>145.635 8.46572</point>
+            <point>160.137 8.7783</point>
+            <point>177.967 9.10948</point>
+            <point>194.708 9.37724</point>
+            <point>205.944 9.49954</point>
+            <point>206.657 9.47931</point>
+            <point>207.118 9.38354</point>
+            <point>207.381 9.16859</point>
+            <point>207.499 8.79086</point>
+            <point>207.527 8.20671</point>
+            <point>207.492 7.76562</point>
+            <point>207.394 7.32044</point>
+            <point>207.245 6.90349</point>
+            <point>207.056 6.54708</point>
+            <point>206.84 6.28351</point>
+          </polyline>
+          <polyline>
+            <height>1</height>
+            <point>109.561 4.35105</point>
+            <point>106.905 4.05756</point>
+            <point>99.7549 3.77215</point>
+            <point>87.7354 3.48586</point>
+            <point>70.4703 3.18974</point>
+            <point>47.584 2.87484</point>
+            <point>34.9372 2.7144</point>
+            <point>23.2215 2.56549</point>
+            <point>13.2124 2.43799</point>
+            <point>5.68575 2.34179</point>
+            <point>1.41697 2.28675</point>
+            <point>-1.89659 2.25696</point>
+            <point>-4.05471 2.2906</point>
+            <point>-5.34723 2.41571</point>
+            <point>-6.06403 2.66036</point>
+            <point>-6.49495 3.05259</point>
+            <point>-7.07892 4.03979</point>
+            <point>-7.11435 4.8754</point>
+            <point>-6.60374 5.55608</point>
+            <point>-5.54958 6.07851</point>
+            <point>-3.95437 6.43935</point>
+            <point>-2.29975 6.55318</point>
+            <point>0.879225 6.65694</point>
+            <point>5.2443 6.74388</point>
+            <point>10.4572 6.80728</point>
+            <point>16.1797 6.84038</point>
+            <point>22.7286 6.87641</point>
+            <point>30.2397 6.94791</point>
+            <point>38.1037 7.0472</point>
+            <point>45.7113 7.16657</point>
+            <point>52.4529 7.29833</point>
+            <point>59.2343 7.44317</point>
+            <point>66.9522 7.59889</point>
+            <point>74.9844 7.7535</point>
+            <point>82.7083 7.89504</point>
+            <point>89.5016 8.0115</point>
+            <point>108.048 8.31436</point>
+            <point>109.099 7.35838</point>
+            <point>109.679 6.69087</point>
+            <point>110.025 5.99342</point>
+            <point>110.127 5.32901</point>
+            <point>109.975 4.76056</point>
+            <point>109.561 4.35105</point>
+          </polyline>
+          <polyline>
+            <height>1</height>
+            <point>-42.7944 -1.78237</point>
+            <point>-44.4121 -7.67662</point>
+            <point>-47.2282 -12.7511</point>
+            <point>-51.1609 -16.9193</point>
+            <point>-56.1286 -20.0946</point>
+            <point>-62.0495 -22.1903</point>
+            <point>-64.7067 -22.6765</point>
+            <point>-67.7741 -23.0142</point>
+            <point>-70.8093 -23.1793</point>
+            <point>-73.3699 -23.1477</point>
+            <point>-75.0136 -22.8954</point>
+            <point>-76.2287 -22.1984</point>
+            <point>-77.0698 -20.8432</point>
+            <point>-77.6377 -18.395</point>
+            <point>-78.0332 -14.4188</point>
+            <point>-78.3572 -8.47993</point>
+            <point>-78.5022 -4.57039</point>
+            <point>-78.6126 -0.124432</point>
+            <point>-78.683 4.49963</point>
+            <point>-78.7078 8.94346</point>
+            <point>-78.6817 12.8488</point>
+            <point>-78.5493 18.8552</point>
+            <point>-78.2603 22.6244</point>
+            <point>-77.6441 24.7434</point>
+            <point>-76.5302 25.7988</point>
+            <point>-74.7479 26.3776</point>
+            <point>-72.4276 26.6539</point>
+            <point>-69.2351 26.6603</point>
+            <point>-65.6851 26.4302</point>
+            <point>-62.2924 25.997</point>
+            <point>-59.5717 25.394</point>
+            <point>-55.2441 23.5451</point>
+            <point>-51.372 20.8469</point>
+            <point>-48.0826 17.4316</point>
+            <point>-45.5035 13.4316</point>
+            <point>-43.7621 8.97904</point>
+            <point>-43.1578 6.5224</point>
+            <point>-42.7632 4.26642</point>
+            <point>-42.574 2.16263</point>
+            <point>-42.5858 0.162533</point>
+            <point>-42.7944 -1.78237</point>
+          </polyline>
+          <polyline>
+            <height>1</height>
+            <point>-89.4111 -21.8577</point>
+            <point>-89.9531 -22.1975</point>
+            <point>-90.5508 -22.5368</point>
+            <point>-91.1572 -22.8514</point>
+            <point>-91.7254 -23.1168</point>
+            <point>-92.2083 -23.3086</point>
+            <point>-97.1801 -23.8925</point>
+            <point>-108.389 -24.5298</point>
+            <point>-125.009 -25.1879</point>
+            <point>-146.216 -25.8342</point>
+            <point>-171.184 -26.4359</point>
+            <point>-195.196 -26.9497</point>
+            <point>-196.851 -25.4899</point>
+            <point>-197.428 -24.9258</point>
+            <point>-198.037 -24.2358</point>
+            <point>-198.632 -23.4788</point>
+            <point>-199.165 -22.7133</point>
+            <point>-199.593 -21.998</point>
+            <point>-200.117 -20.8219</point>
+            <point>-200.449 -19.0097</point>
+            <point>-200.646 -15.5439</point>
+            <point>-200.766 -9.40656</point>
+            <point>-200.867 0.419814</point>
+            <point>-201.054 20.8053</point>
+            <point>-198.944 22.6328</point>
+            <point>-196.834 24.4603</point>
+            <point>-166.16 24.9867</point>
+            <point>-155.768 25.1734</point>
+            <point>-145.341 25.3755</point>
+            <point>-135.63 25.5775</point>
+            <point>-127.387 25.7636</point>
+            <point>-121.366 25.9182</point>
+            <point>-116.55 26.0464</point>
+            <point>-111.658 26.1591</point>
+            <point>-107.047 26.2492</point>
+            <point>-103.076 26.3099</point>
+            <point>-100.1 26.334</point>
+            <point>-92.9541 26.3449</point>
+            <point>-91.4459 24.683</point>
+            <point>-90.9487 24.0798</point>
+            <point>-90.4742 23.4029</point>
+            <point>-90.0548 22.7064</point>
+            <point>-89.723 22.0441</point>
+            <point>-89.5114 21.4701</point>
+            <point>-89.3615 20.119</point>
+            <point>-89.2016 17.2953</point>
+            <point>-89.0437 13.3081</point>
+            <point>-88.9002 8.46626</point>
+            <point>-88.7833 3.0788</point>
+            <point>-88.6734 -2.41076</point>
+            <point>-88.5492 -7.53657</point>
+            <point>-88.4208 -11.9562</point>
+            <point>-88.2982 -15.327</point>
+            <point>-88.1912 -17.3067</point>
+            <point>-87.9007 -20.852</point>
+            <point>-89.4111 -21.8577</point>
+          </polyline>
+        </geometry>
+        <material>
+          <lighting>1</lighting>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Grey</name>
+          </script>
+        </material>
+        <transparency>0</transparency>
+        <cast_shadows>1</cast_shadows>
+      </visual>
+      <collision name='collision'>
+        <laser_retro>0</laser_retro>
+        <max_contacts>10</max_contacts>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <polyline>
+            <height>1</height>
+            <point>221.594 13.1596</point>
+            <point>221.376 14.1853</point>
+            <point>221.228 14.9802</point>
+            <point>221.061 15.6927</point>
+            <point>220.782 16.4715</point>
+            <point>220.299 17.4652</point>
+            <point>218.9 20.6174</point>
+            <point>217.574 23.1683</point>
+            <point>215.087 25.1266</point>
+            <point>210.202 26.5009</point>
+            <point>201.684 27.3</point>
+            <point>178.449 28.0161</point>
+            <point>156.485 28.0373</point>
+            <point>135.768 27.6018</point>
+            <point>116.276 26.9476</point>
+            <point>97.987 26.3127</point>
+            <point>87.1676 25.8623</point>
+            <point>74.8166 25.2082</point>
+            <point>61.9665 24.4977</point>
+            <point>49.6499 23.878</point>
+            <point>38.8992 23.4963</point>
+            <point>30.0445 23.3892</point>
+            <point>22.5032 23.4315</point>
+            <point>15.9381 23.5283</point>
+            <point>10.0122 23.5845</point>
+            <point>4.38831 23.505</point>
+            <point>-1.51008 23.291</point>
+            <point>-7.55135 23.0484</point>
+            <point>-13.0101 22.8393</point>
+            <point>-17.161 22.7256</point>
+            <point>-19.2787 22.7695</point>
+            <point>-21.9123 23.0731</point>
+            <point>-24.8629 23.3742</point>
+            <point>-27.8009 23.9411</point>
+            <point>-30.397 25.042</point>
+            <point>-32.3215 26.9451</point>
+            <point>-37.0438 33.6136</point>
+            <point>-41.2584 37.8788</point>
+            <point>-45.1271 40.5518</point>
+            <point>-48.8115 42.4436</point>
+            <point>-52.4732 44.3652</point>
+            <point>-55.1814 45.7696</point>
+            <point>-58.0392 46.8183</point>
+            <point>-61.2549 47.5946</point>
+            <point>-65.0368 48.1819</point>
+            <point>-69.5931 48.6634</point>
+            <point>-73.952 48.9721</point>
+            <point>-79.4713 49.0854</point>
+            <point>-87.9667 48.9809</point>
+            <point>-101.254 48.6363</point>
+            <point>-121.148 48.0292</point>
+            <point>-129.211 47.785</point>
+            <point>-138.778 47.509</point>
+            <point>-149.052 47.2231</point>
+            <point>-159.237 46.9495</point>
+            <point>-168.538 46.7104</point>
+            <point>-192.788 46.1331</point>
+            <point>-208.359 45.5776</point>
+            <point>-217.201 44.6199</point>
+            <point>-221.264 42.8356</point>
+            <point>-222.498 39.8008</point>
+            <point>-222.577 33.3136</point>
+            <point>-222.434 19.5294</point>
+            <point>-222.127 1.85567</point>
+            <point>-221.716 -16.3001</point>
+            <point>-221.26 -31.5303</point>
+            <point>-221.092 -44.6282</point>
+            <point>-219.651 -46.2426</point>
+            <point>-217.924 -47.8103</point>
+            <point>-215.551 -48.73</point>
+            <point>-211.607 -49.0854</point>
+            <point>-205.164 -48.96</point>
+            <point>-195.296 -48.4373</point>
+            <point>-182.511 -47.7177</point>
+            <point>-170.051 -47.0844</point>
+            <point>-156.219 -46.461</point>
+            <point>-139.319 -45.7709</point>
+            <point>-117.653 -44.9376</point>
+            <point>-96.8805 -44.0515</point>
+            <point>-81.5218 -43.1922</point>
+            <point>-70.8056 -42.3666</point>
+            <point>-63.9604 -41.5818</point>
+            <point>-60.2147 -40.845</point>
+            <point>-57.4478 -40.1432</point>
+            <point>-54.521 -39.436</point>
+            <point>-51.5886 -38.5305</point>
+            <point>-48.8049 -37.2339</point>
+            <point>-46.324 -35.3533</point>
+            <point>-44.2835 -33.5552</point>
+            <point>-42.0183 -31.8391</point>
+            <point>-39.4254 -29.9416</point>
+            <point>-36.4018 -27.5993</point>
+            <point>-32.8446 -24.5486</point>
+            <point>-30.574 -22.2179</point>
+            <point>-28.819 -20.0157</point>
+            <point>-27.3357 -18.0408</point>
+            <point>-25.8808 -16.3922</point>
+            <point>-24.2104 -15.1686</point>
+            <point>-21.704 -14.6806</point>
+            <point>-16.5109 -14.7217</point>
+            <point>-7.218 -14.9705</point>
+            <point>7.58794 -15.1059</point>
+            <point>29.3201 -14.8064</point>
+            <point>51.5132 -14.3095</point>
+            <point>77.1408 -13.785</point>
+            <point>103.789 -13.2472</point>
+            <point>129.042 -12.7105</point>
+            <point>150.486 -12.1895</point>
+            <point>188.77 -10.8188</point>
+            <point>208.876 -9.3731</point>
+            <point>216.666 -7.83631</point>
+            <point>218.003 -6.19218</point>
+            <point>218.749 -4.42448</point>
+            <point>220.061 -3.29205</point>
+            <point>221.011 -2.09851</point>
+            <point>221.682 -0.670066</point>
+            <point>222.154 1.16704</point>
+            <point>222.51 3.5866</point>
+            <point>222.577 5.07964</point>
+            <point>222.501 6.96938</point>
+            <point>222.301 9.06991</point>
+            <point>221.992 11.1953</point>
+            <point>221.594 13.1596</point>
+          </polyline>
+          <polyline>
+            <height>1</height>
+            <point>214.131 12.3661</point>
+            <point>213.846 13.1205</point>
+            <point>213.487 13.7177</point>
+            <point>212.999 14.2149</point>
+            <point>212.324 14.6691</point>
+            <point>211.407 15.1376</point>
+            <point>208.619 16.2373</point>
+            <point>205.337 16.935</point>
+            <point>200.7 17.2982</point>
+            <point>193.846 17.3944</point>
+            <point>183.913 17.2911</point>
+            <point>163.775 16.9671</point>
+            <point>143.967 16.6195</point>
+            <point>124.757 16.2532</point>
+            <point>106.416 15.8734</point>
+            <point>89.2129 15.4853</point>
+            <point>79.146 15.2569</point>
+            <point>67.7149 15.0127</point>
+            <point>55.8397 14.7715</point>
+            <point>44.4407 14.552</point>
+            <point>34.438 14.3727</point>
+            <point>25.0337 14.2069</point>
+            <point>15.2987 14.0245</point>
+            <point>5.95684 13.8399</point>
+            <point>-2.26786 13.6673</point>
+            <point>-8.65155 13.5212</point>
+            <point>-13.7639 13.4147</point>
+            <point>-18.4526 13.3524</point>
+            <point>-22.411 13.3355</point>
+            <point>-25.3323 13.3654</point>
+            <point>-26.9099 13.4433</point>
+            <point>-29.1089 13.9076</point>
+            <point>-31.2397 14.7122</point>
+            <point>-33.2374 15.8209</point>
+            <point>-35.0368 17.1977</point>
+            <point>-36.5729 18.8065</point>
+            <point>-40.7015 23.7987</point>
+            <point>-43.9589 27.3765</point>
+            <point>-46.7606 29.9168</point>
+            <point>-49.5223 31.7962</point>
+            <point>-52.6593 33.3917</point>
+            <point>-55.1528 34.4102</point>
+            <point>-57.7329 35.1927</point>
+            <point>-60.6299 35.7865</point>
+            <point>-64.0739 36.2389</point>
+            <point>-68.2953 36.5969</point>
+            <point>-72.3707 36.8179</point>
+            <point>-77.531 36.899</point>
+            <point>-85.4738 36.8242</point>
+            <point>-97.8967 36.5776</point>
+            <point>-116.497 36.1432</point>
+            <point>-124.036 35.9685</point>
+            <point>-132.98 35.7709</point>
+            <point>-142.586 35.5663</point>
+            <point>-152.109 35.3706</point>
+            <point>-160.804 35.1995</point>
+            <point>-183.484 34.6873</point>
+            <point>-198.06 34.0535</point>
+            <point>-206.347 33.0861</point>
+            <point>-210.163 31.5731</point>
+            <point>-211.324 29.3024</point>
+            <point>-211.398 24.6605</point>
+            <point>-211.264 14.7973</point>
+            <point>-210.977 2.15084</point>
+            <point>-210.593 -10.8405</point>
+            <point>-210.166 -21.7385</point>
+            <point>-209.556 -34.5902</point>
+            <point>-208.209 -35.7454</point>
+            <point>-206.594 -36.8672</point>
+            <point>-204.376 -37.5253</point>
+            <point>-200.689 -37.7796</point>
+            <point>-194.665 -37.6899</point>
+            <point>-185.438 -37.3158</point>
+            <point>-173.485 -36.8009</point>
+            <point>-161.835 -36.3478</point>
+            <point>-148.903 -35.9017</point>
+            <point>-133.102 -35.4079</point>
+            <point>-112.846 -34.8117</point>
+            <point>-93.5658 -34.2264</point>
+            <point>-79.5439 -33.728</point>
+            <point>-69.9278 -33.2762</point>
+            <point>-63.8656 -32.8311</point>
+            <point>-60.5051 -32.3527</point>
+            <point>-57.8413 -31.5921</point>
+            <point>-54.9216 -30.4699</point>
+            <point>-51.9612 -29.0865</point>
+            <point>-49.1752 -27.5425</point>
+            <point>-46.7789 -25.9385</point>
+            <point>-44.9082 -24.4085</point>
+            <point>-42.9493 -22.5589</point>
+            <point>-40.8775 -20.3632</point>
+            <point>-38.668 -17.7953</point>
+            <point>-36.2959 -14.8289</point>
+            <point>-34.6931 -12.9</point>
+            <point>-33.1172 -11.2915</point>
+            <point>-31.5354 -9.97638</point>
+            <point>-29.915 -8.9273</point>
+            <point>-28.2233 -8.11706</point>
+            <point>-25.8341 -7.57642</point>
+            <point>-20.8696 -7.14929</point>
+            <point>-12.0507 -6.78249</point>
+            <point>1.90142 -6.42282</point>
+            <point>22.2658 -6.01708</point>
+            <point>42.9814 -5.6253</point>
+            <point>66.8611 -5.16354</point>
+            <point>91.6789 -4.67557</point>
+            <point>115.208 -4.20517</point>
+            <point>135.224 -3.7961</point>
+            <point>172.31 -3.02081</point>
+            <point>194.189 -2.47652</point>
+            <point>205.15 -1.96188</point>
+            <point>209.482 -1.27556</point>
+            <point>211.471 -0.216228</point>
+            <point>212.698 0.594077</point>
+            <point>213.586 1.44812</point>
+            <point>214.213 2.47023</point>
+            <point>214.655 3.78478</point>
+            <point>214.987 5.51609</point>
+            <point>215.05 6.58443</point>
+            <point>214.979 7.93664</point>
+            <point>214.791 9.43967</point>
+            <point>214.503 10.9605</point>
+            <point>214.131 12.366</point>
+          </polyline>
+          <polyline>
+            <height>1</height>
+            <point>206.84 6.28351</point>
+            <point>205.15 5.88044</point>
+            <point>200.553 5.55632</point>
+            <point>192.269 5.28566</point>
+            <point>179.516 5.043</point>
+            <point>161.516 4.80284</point>
+            <point>148.988 4.67822</point>
+            <point>141.272 4.72399</point>
+            <point>137.224 5.02529</point>
+            <point>135.7 5.66724</point>
+            <point>135.557 6.735</point>
+            <point>135.67 7.30857</point>
+            <point>135.925 7.68601</point>
+            <point>136.455 7.92854</point>
+            <point>137.394 8.09739</point>
+            <point>138.875 8.25376</point>
+            <point>145.635 8.46572</point>
+            <point>160.137 8.7783</point>
+            <point>177.967 9.10948</point>
+            <point>194.708 9.37724</point>
+            <point>205.944 9.49954</point>
+            <point>206.657 9.47931</point>
+            <point>207.118 9.38354</point>
+            <point>207.381 9.16859</point>
+            <point>207.499 8.79086</point>
+            <point>207.527 8.20671</point>
+            <point>207.492 7.76562</point>
+            <point>207.394 7.32044</point>
+            <point>207.245 6.90349</point>
+            <point>207.056 6.54708</point>
+            <point>206.84 6.28351</point>
+          </polyline>
+          <polyline>
+            <height>1</height>
+            <point>109.561 4.35105</point>
+            <point>106.905 4.05756</point>
+            <point>99.7549 3.77215</point>
+            <point>87.7354 3.48586</point>
+            <point>70.4703 3.18974</point>
+            <point>47.584 2.87484</point>
+            <point>34.9372 2.7144</point>
+            <point>23.2215 2.56549</point>
+            <point>13.2124 2.43799</point>
+            <point>5.68575 2.34179</point>
+            <point>1.41697 2.28675</point>
+            <point>-1.89659 2.25696</point>
+            <point>-4.05471 2.2906</point>
+            <point>-5.34723 2.41571</point>
+            <point>-6.06403 2.66036</point>
+            <point>-6.49495 3.05259</point>
+            <point>-7.07892 4.03979</point>
+            <point>-7.11435 4.8754</point>
+            <point>-6.60374 5.55608</point>
+            <point>-5.54958 6.07851</point>
+            <point>-3.95437 6.43935</point>
+            <point>-2.29975 6.55318</point>
+            <point>0.879225 6.65694</point>
+            <point>5.2443 6.74388</point>
+            <point>10.4572 6.80728</point>
+            <point>16.1797 6.84038</point>
+            <point>22.7286 6.87641</point>
+            <point>30.2397 6.94791</point>
+            <point>38.1037 7.0472</point>
+            <point>45.7113 7.16657</point>
+            <point>52.4529 7.29833</point>
+            <point>59.2343 7.44317</point>
+            <point>66.9522 7.59889</point>
+            <point>74.9844 7.7535</point>
+            <point>82.7083 7.89504</point>
+            <point>89.5016 8.0115</point>
+            <point>108.048 8.31436</point>
+            <point>109.099 7.35838</point>
+            <point>109.679 6.69087</point>
+            <point>110.025 5.99342</point>
+            <point>110.127 5.32901</point>
+            <point>109.975 4.76056</point>
+            <point>109.561 4.35105</point>
+          </polyline>
+          <polyline>
+            <height>1</height>
+            <point>-42.7944 -1.78237</point>
+            <point>-44.4121 -7.67662</point>
+            <point>-47.2282 -12.7511</point>
+            <point>-51.1609 -16.9193</point>
+            <point>-56.1286 -20.0946</point>
+            <point>-62.0495 -22.1903</point>
+            <point>-64.7067 -22.6765</point>
+            <point>-67.7741 -23.0142</point>
+            <point>-70.8093 -23.1793</point>
+            <point>-73.3699 -23.1477</point>
+            <point>-75.0136 -22.8954</point>
+            <point>-76.2287 -22.1984</point>
+            <point>-77.0698 -20.8432</point>
+            <point>-77.6377 -18.395</point>
+            <point>-78.0332 -14.4188</point>
+            <point>-78.3572 -8.47993</point>
+            <point>-78.5022 -4.57039</point>
+            <point>-78.6126 -0.124432</point>
+            <point>-78.683 4.49963</point>
+            <point>-78.7078 8.94346</point>
+            <point>-78.6817 12.8488</point>
+            <point>-78.5493 18.8552</point>
+            <point>-78.2603 22.6244</point>
+            <point>-77.6441 24.7434</point>
+            <point>-76.5302 25.7988</point>
+            <point>-74.7479 26.3776</point>
+            <point>-72.4276 26.6539</point>
+            <point>-69.2351 26.6603</point>
+            <point>-65.6851 26.4302</point>
+            <point>-62.2924 25.997</point>
+            <point>-59.5717 25.394</point>
+            <point>-55.2441 23.5451</point>
+            <point>-51.372 20.8469</point>
+            <point>-48.0826 17.4316</point>
+            <point>-45.5035 13.4316</point>
+            <point>-43.7621 8.97904</point>
+            <point>-43.1578 6.5224</point>
+            <point>-42.7632 4.26642</point>
+            <point>-42.574 2.16263</point>
+            <point>-42.5858 0.162533</point>
+            <point>-42.7944 -1.78237</point>
+          </polyline>
+          <polyline>
+            <height>1</height>
+            <point>-89.4111 -21.8577</point>
+            <point>-89.9531 -22.1975</point>
+            <point>-90.5508 -22.5368</point>
+            <point>-91.1572 -22.8514</point>
+            <point>-91.7254 -23.1168</point>
+            <point>-92.2083 -23.3086</point>
+            <point>-97.1801 -23.8925</point>
+            <point>-108.389 -24.5298</point>
+            <point>-125.009 -25.1879</point>
+            <point>-146.216 -25.8342</point>
+            <point>-171.184 -26.4359</point>
+            <point>-195.196 -26.9497</point>
+            <point>-196.851 -25.4899</point>
+            <point>-197.428 -24.9258</point>
+            <point>-198.037 -24.2358</point>
+            <point>-198.632 -23.4788</point>
+            <point>-199.165 -22.7133</point>
+            <point>-199.593 -21.998</point>
+            <point>-200.117 -20.8219</point>
+            <point>-200.449 -19.0097</point>
+            <point>-200.646 -15.5439</point>
+            <point>-200.766 -9.40656</point>
+            <point>-200.867 0.419814</point>
+            <point>-201.054 20.8053</point>
+            <point>-198.944 22.6328</point>
+            <point>-196.834 24.4603</point>
+            <point>-166.16 24.9867</point>
+            <point>-155.768 25.1734</point>
+            <point>-145.341 25.3755</point>
+            <point>-135.63 25.5775</point>
+            <point>-127.387 25.7636</point>
+            <point>-121.366 25.9182</point>
+            <point>-116.55 26.0464</point>
+            <point>-111.658 26.1591</point>
+            <point>-107.047 26.2492</point>
+            <point>-103.076 26.3099</point>
+            <point>-100.1 26.334</point>
+            <point>-92.9541 26.3449</point>
+            <point>-91.4459 24.683</point>
+            <point>-90.9487 24.0798</point>
+            <point>-90.4742 23.4029</point>
+            <point>-90.0548 22.7064</point>
+            <point>-89.723 22.0441</point>
+            <point>-89.5114 21.4701</point>
+            <point>-89.3615 20.119</point>
+            <point>-89.2016 17.2953</point>
+            <point>-89.0437 13.3081</point>
+            <point>-88.9002 8.46626</point>
+            <point>-88.7833 3.0788</point>
+            <point>-88.6734 -2.41076</point>
+            <point>-88.5492 -7.53657</point>
+            <point>-88.4208 -11.9562</point>
+            <point>-88.2982 -15.327</point>
+            <point>-88.1912 -17.3067</point>
+            <point>-87.9007 -20.852</point>
+            <point>-89.4111 -21.8577</point>
+          </polyline>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>1</mu>
+              <mu2>1</mu2>
+              <fdir1>0 0 0</fdir1>
+              <slip1>0</slip1>
+              <slip2>0</slip2>
+            </ode>
+            <torsional>
+              <coefficient>1</coefficient>
+              <patch_radius>0</patch_radius>
+              <surface_radius>0</surface_radius>
+              <use_patch_radius>1</use_patch_radius>
+              <ode>
+                <slip>0</slip>
+              </ode>
+            </torsional>
+          </friction>
+          <bounce>
+            <restitution_coefficient>0</restitution_coefficient>
+            <threshold>1e+06</threshold>
+          </bounce>
+          <contact>
+            <collide_without_contact>0</collide_without_contact>
+            <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+            <collide_bitmask>1</collide_bitmask>
+            <ode>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+13</kp>
+              <kd>1</kd>
+              <max_vel>0.01</max_vel>
+              <min_depth>0</min_depth>
+            </ode>
+            <bullet>
+              <split_impulse>1</split_impulse>
+              <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+13</kp>
+              <kd>1</kd>
+            </bullet>
+          </contact>
+        </surface>
+      </collision>
+    </link>
+    <static>0</static>
+    <allow_auto_disable>1</allow_auto_disable>
+  </model>
+</sdf>

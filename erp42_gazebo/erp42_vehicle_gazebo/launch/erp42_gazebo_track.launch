@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- Simulator config -->
+    <arg name="gui" default="false" />
+    <arg name="open_rviz" default="true"/>
+    <arg name="rviz_file" default="$(find erp42_vehicle_gazebo)/rviz/erp42_sim_basic.rviz" />
+
+    <arg name="use_sim_time" default="true"/>
+
+    <!-- World file -->
+    <arg name="map_name" default="sunmoon" />
+    <arg name="world_name" default="$(find erp42_vehicle_gazebo)/worlds/$(arg map_name).world" />
+    <arg name="map_file" default="$(find erp42_vehicle_gazebo)/maps/$(arg map_name).yaml"/>
+
+
+    <!-- Load gazebo world -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="world_name" value="$(arg world_name)"/>
+        <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+        <arg name="gui" value="$(arg gui)"/>
+    </include>
+
+    <!-- Load Map server -->
+    <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)" />
+
+    <!-- Load rviz -->
+    <group if="$(arg open_rviz)">
+        <node pkg="rviz" type="rviz" name="rviz" required="true" args="-d $(arg rviz_file)"/>
+    </group>
+  
+</launch>
