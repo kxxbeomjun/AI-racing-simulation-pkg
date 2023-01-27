@@ -19,7 +19,10 @@ $ cd erp42_simulator
 $ git submodule init
 $ git submodule update
 
-# Build packages
+# Install dependencies
+$ rosdep install --from-paths . --ignore-src -r -y
+
+# Build our packages
 $ cd (your ros workspace)
 $ catkin_make
 ```

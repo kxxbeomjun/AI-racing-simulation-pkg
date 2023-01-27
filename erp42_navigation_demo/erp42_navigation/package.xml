@@ -1,12 +1,15 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>erp42_navigation_demo</name>
+  <name>erp42_navigation</name>
   <version>0.0.0</version>
   <description>The erp42_navigation package</description>
 
   <maintainer email="djjin@todo.todo">djjin</maintainer>
 
   <license>TODO</license>
+  <exec_depend>move_base</exec_depend>
+  <exec_depend>map_server</exec_depend>
+  <exec_depend>costmap_2d</exec_depend>
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>global_planner</build_depend>
   <build_export_depend>global_planner</build_export_depend>

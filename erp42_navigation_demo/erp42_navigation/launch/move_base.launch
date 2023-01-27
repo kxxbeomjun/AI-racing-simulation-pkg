@@ -11,12 +11,12 @@
     <param name="planner_frequency" value="1.0" />
     <param name="planner_patience" value="5.0" />
     <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS" />
-    <rosparam file="$(find erp42_navigation_demo)/params/costmap/costmap_common_params.yaml" command="load" ns="global_costmap" />
-    <rosparam file="$(find erp42_navigation_demo)/params/costmap/costmap_common_params.yaml" command="load" ns="local_costmap" />
-    <rosparam file="$(find erp42_navigation_demo)/params/costmap/local_costmap_params.yaml" command="load" />
-    <rosparam file="$(find erp42_navigation_demo)/params/costmap/global_costmap_params.yaml" command="load" />
-    <rosparam file="$(find erp42_navigation_demo)/params/move_base_params.yaml" command="load" />
-    <rosparam file="$(find erp42_navigation_demo)/params/planner/dwa_local_planner_params.yaml" command="load" />
+    <rosparam file="$(find erp42_navigation)/params/costmap/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find erp42_navigation)/params/costmap/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find erp42_navigation)/params/costmap/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find erp42_navigation)/params/costmap/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find erp42_navigation)/params/move_base_params.yaml" command="load" />
+    <rosparam file="$(find erp42_navigation)/params/planner/dwa_local_planner_params.yaml" command="load" />
     <remap from="cmd_vel" to="$(arg cmd_vel_topic)"/>
     <remap from="odom" to="$(arg odom_topic)"/>
     <param name="DWAPlannerROS/min_vel_x" value="0.0" if="$(arg move_forward_only)" />

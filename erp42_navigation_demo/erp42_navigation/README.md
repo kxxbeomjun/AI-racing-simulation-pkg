@@ -1,4 +1,4 @@
-# erp42_navigation_demo
+# erp42_navigation
 
 > **이 패키지는 gazebo simulation에서의 차량 제어를 위한 데모 패키지임**
 

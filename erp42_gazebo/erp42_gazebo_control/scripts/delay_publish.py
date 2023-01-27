@@ -17,7 +17,7 @@ def pub_cmd():
         print("wait for delayTime")
 
 rospy.init_node('delay_publish', anonymous=True)
-delayTime = 0.05*8
+delayTime = 0.05*6
 cmd_vel_Q = []
 
 # cmd_vel_delay publisher

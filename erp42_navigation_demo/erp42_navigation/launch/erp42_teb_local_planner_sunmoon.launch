@@ -11,17 +11,17 @@
   <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)"/>
 
   <!-- AMCL
-  <include file="$(find erp42_navigation_demo)/launch/amcl.launch"/> -->
+  <include file="$(find erp42_navigation)/launch/amcl.launch"/> -->
 
 <!-- move_base -->
   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
 <!--  <param name="base_local_planner" value="global_planner/GlobalPlanner" />-->
-  <rosparam file="$(find erp42_navigation_demo)/params/costmap/costmap_common_params.yaml" command="load" ns="global_costmap" />
-  <rosparam file="$(find erp42_navigation_demo)/params/costmap/costmap_common_params.yaml" command="load" ns="local_costmap" />
-  <rosparam file="$(find erp42_navigation_demo)/params/costmap/local_costmap_params.yaml" command="load" />
-  <rosparam file="$(find erp42_navigation_demo)/params/costmap/global_costmap_params.yaml" command="load" />
-  <rosparam file="$(find erp42_navigation_demo)/params/move_base_params.yaml" command="load" />
-  <rosparam file="$(find erp42_navigation_demo)/params/planner/teb_local_planner_params.yaml" command="load" />
+  <rosparam file="$(find erp42_navigation)/params/costmap/costmap_common_params.yaml" command="load" ns="global_costmap" />
+  <rosparam file="$(find erp42_navigation)/params/costmap/costmap_common_params.yaml" command="load" ns="local_costmap" />
+  <rosparam file="$(find erp42_navigation)/params/costmap/local_costmap_params.yaml" command="load" />
+  <rosparam file="$(find erp42_navigation)/params/costmap/global_costmap_params.yaml" command="load" />
+  <rosparam file="$(find erp42_navigation)/params/move_base_params.yaml" command="load" />
+  <rosparam file="$(find erp42_navigation)/params/planner/teb_local_planner_params.yaml" command="load" />
 
   <param name="base_global_planner" value="global_planner/GlobalPlanner" />
   <param name="planner_frequency" value="3.0" />
@@ -42,6 +42,6 @@
   <!-- rviz -->
   <group if="$(arg open_rviz)">
     <node pkg="rviz" type="rviz" name="rviz" required="true"
-          args="-d $(find erp42_navigation_demo)/rviz/teb_planner_rviz.rviz"/>
+          args="-d $(find erp42_navigation)/rviz/teb_planner_rviz.rviz"/>
   </group>
 </launch>

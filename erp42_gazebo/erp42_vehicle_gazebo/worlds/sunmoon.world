@@ -20,11 +20,11 @@
     <physics type="ode">
       <ode>
         <solver>
-          <iters>100</iters>
+          <iters>200</iters>
         </solver>
       </ode>
-      <max_step_size>0.004</max_step_size>
-      <real_time_update_rate>250</real_time_update_rate>
+      <max_step_size>0.002</max_step_size>
+      <real_time_update_rate>500</real_time_update_rate>
     </physics>
 
     <!-- Load Racing Track (Sunmoon Univ) -->
