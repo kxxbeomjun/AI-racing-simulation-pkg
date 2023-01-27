@@ -54,14 +54,14 @@
                 -R $(arg roll) -P $(arg pitch) -Y $(arg yaw)"
             respawn="false"/>
 
-        <!-- <include file="$(find velodyne_pointcloud)/launch/VLP16_points.launch" /> -->
+        <node pkg="message_to_tf" type="message_to_tf" name="message_to_tf" args="/erp42_$(arg total_vehicle_num)/ground_truth_pose">
+            <param name="frame_id" value="/map" />
+        </node>
 
     </group>
 
-    <node pkg="message_to_tf" type="message_to_tf" name="message_to_tf" args="/erp42_$(arg total_vehicle_num)/ground_truth_pose"/>
-
     <!-- recursively start new node -->
-    <include file="$(find erp42_vehicle_gazebo)/launch/erp42_gazebo_single_vehicle.launch" if="$(eval arg('total_vehicle_num') - 1 > 0)">
+    <include file="$(find erp42_vehicle_gazebo)/launch/erp42_gazebo_vehicles.launch" if="$(eval arg('total_vehicle_num') - 1 > 0)">
         <arg name="total_vehicle_num" value="$(eval arg('total_vehicle_num') - 1)"/>
         <arg name="use_sim_time" value="$(arg use_sim_time)"/>
     </include>

@@ -10,7 +10,7 @@
     <arg name="map_name" default="sunmoon" />
 
     <!-- Vehicle configuration -->
-    <arg name="total_vehicle_num" default="1" />
+    <arg name="total_vehicle_num" default="2" />
 
     <!-- Launch gazebo sim and load track -->
     <include file="$(find erp42_vehicle_gazebo)/launch/erp42_gazebo_track.launch">
