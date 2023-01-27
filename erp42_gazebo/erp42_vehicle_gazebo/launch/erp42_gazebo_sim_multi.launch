@@ -21,7 +21,7 @@
     </include>
     
     <!-- Load ERP42 Vehicles -->
-    <include file="$(find erp42_vehicle_gazebo)/launch/erp42_gazebo_single_vehicle.launch">
+    <include file="$(find erp42_vehicle_gazebo)/launch/erp42_gazebo_vehicles.launch">
         <arg name="total_vehicle_num" value="$(eval arg('total_vehicle_num'))"/>
         <arg name="use_sim_time" value="$(arg use_sim_time)"/>
     </include>

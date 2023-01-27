@@ -19,7 +19,7 @@
 <robot name="erp42_vehicle" xmlns:xacro="http://wiki.ros.org/xacro">
   <!-- Include xacro for inertials, materials and wheels -->
   <xacro:include filename="$(find erp42_vehicle_description)/urdf/wheel.xacro"/>
-  <xacro:include filename="$(find velodyne_description)/urdf/VLP-16.urdf.xacro"/>
+  <!-- <xacro:include filename="$(find velodyne_description)/urdf/VLP-16.urdf.xacro"/> -->
   <!-- <xacro:include filename="$(find livox_laser_simulation)/urdf/livox_horizon.xacro"/> -->
   
 

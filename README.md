@@ -24,23 +24,31 @@ $ cd (your ros workspace)
 $ catkin_make
 ```
 
-### Run Simulator
+### Run Simulator (Single vehicle)
+
+```bash
+$ roslaunch erp42_vehicle_gazebo erp42_gazebo_sim_single.launch
+$ roslaunch erp42_vehicle_gazebo erp42_navigation_demo.launch
+```
+
+### Run Simulator (Multiple vehicle)
+
+현재 사용 불가
 
 **launch with renderless**
 
 ```bash
-$ roslaunch erp42_vehicle_gazebo erp42_gazebo_sim.launch
+$ roslaunch erp42_vehicle_gazebo erp42_gazebo_sim_multi.launch
 ```
 
 **launch with rendering**
 
 ```bash
-$ roslaunch erp42_vehicle_gazebo erp42_gazebo_sim.launch gui:=true
+$ roslaunch erp42_vehicle_gazebo erp42_gazebo_sim_multi.launch gui:=true
 ```
 
 **launch demo navigation**
 
-tf 문제가 해결되지 않아, 현재는 정상 동작하지 않음.
 ```bash
 $ roslaunch erp42_vehicle_gazebo erp42_navigation_demo.launch
 ```
@@ -52,6 +60,8 @@ $ roslaunch erp42_vehicle_gazebo erp42_navigation_demo.launch
 ```
 
 ## 그 외 기타 설명
+
+[ERP42 simulator trouble shooting/issues](./docs/troubleshooting_issues.md)
 
 [ERP42 simulator 패키지 구조](./docs/package_tree.md)
 
