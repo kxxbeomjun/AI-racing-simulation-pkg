@@ -15,6 +15,7 @@ Multiple ERP42 vehicle simulator (Based on Gazebo Sim)
 # Download and update gitsubmodule
 $ cd (your ros workspace)/src
 $ git clone https://github.com/Yonsei-AI-Racing/erp42_simulator.git
+$ cd erp42_simulator
 $ git submodule init
 $ git submodule update
 
