@@ -10,43 +10,45 @@
     <!-- Map server -->
     <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)" />
 
-    <!-- move_base -->
-    <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
-        <rosparam file="$(find erp42_navigation)/params/costmap/costmap_common_params.yaml" command="load" ns="global_costmap" />
-        <rosparam file="$(find erp42_navigation)/params/costmap/costmap_common_params.yaml" command="load" ns="local_costmap" />
-        <rosparam file="$(find erp42_navigation)/params/costmap/local_costmap_params.yaml" command="load" />
-        <rosparam file="$(find erp42_navigation)/params/costmap/global_costmap_params.yaml" command="load" />
-        <rosparam file="$(find erp42_navigation)/params/move_base_params.yaml" command="load" />
-        <rosparam file="$(find erp42_navigation)/params/planner/regulated_pure_pursuit_planner_params.yaml" command="load" />
+    <group ns="/">
+        <!-- move_base -->
+        <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+            <rosparam file="$(find erp42_navigation)/params/costmap/costmap_common_params.yaml" command="load" ns="global_costmap" />
+            <rosparam file="$(find erp42_navigation)/params/costmap/costmap_common_params.yaml" command="load" ns="local_costmap" />
+            <rosparam file="$(find erp42_navigation)/params/costmap/local_costmap_params.yaml" command="load" />
+            <rosparam file="$(find erp42_navigation)/params/costmap/global_costmap_params.yaml" command="load" />
+            <rosparam file="$(find erp42_navigation)/params/move_base_params.yaml" command="load" />
+            <rosparam file="$(find erp42_navigation)/params/planner/regulated_pure_pursuit_planner_params.yaml" command="load" />
 
-        <param name="base_global_planner" value="global_planner/GlobalPlanner" />
-        <param name="planner_frequency" value="10.0" />
-        <param name="planner_patience" value="5.0" />
+            <param name="base_global_planner" value="global_planner/GlobalPlanner" />
+            <param name="planner_frequency" value="10.0" />
+            <param name="planner_patience" value="5.0" />
 
-        <param name="base_local_planner" value="regulated_pure_pursuit_controller/RegulatedPurePursuitController" />
-        <param name="controller_frequency" value="20.0" />
-        <param name="controller_patience" value="30.0" />
+            <param name="base_local_planner" value="regulated_pure_pursuit_controller/RegulatedPurePursuitController" />
+            <param name="controller_frequency" value="20.0" />
+            <param name="controller_patience" value="30.0" />
 
-        <remap from="cmd_vel" to="$(arg cmd_vel_topic)"/>
-        <remap from="odom" to="$(arg odom_topic)"/>
+            <remap from="cmd_vel" to="$(arg cmd_vel_topic)"/>
+            <remap from="odom" to="$(arg odom_topic)"/>
 
-        <param name="clearing_rotation_allowed" value="false" /> <!-- Our carlike robot is not able to rotate in place -->
-    </node>
+            <param name="clearing_rotation_allowed" value="false" /> <!-- Our carlike robot is not able to rotate in place -->
+        </node>
 
-    <!-- Publish delay -->
-    <node pkg="erp42_gazebo_control" name="delay_publish" type="delay_publish.py" respawn="false" />
+        <!-- Publish delay -->
+        <node pkg="erp42_gazebo_control" name="delay_publish" type="delay_publish.py" respawn="false" />
 
-    <!-- Virtual frame broadcaster -->
-    <node pkg="virtual_frame_broadcaster" type="virtual_frame_broadcaster_node" name="virtual_frame_broadcaster" output="screen">
-        <param name="parent_frame" value="base_link" />
-        <param name="child_frame"  value="virtual_base_link" />
-        <param name="cmd_vel_topic"  value="$(arg cmd_vel_topic)" />
-        <param name="dt"  value="0.05" />
-        <param name="delayed_step"  value="6" />
-    </node>
+        <!-- Virtual frame broadcaster -->
+        <node pkg="virtual_frame_broadcaster" type="virtual_frame_broadcaster_node" name="virtual_frame_broadcaster" output="screen">
+            <param name="parent_frame" value="base_link" />
+            <param name="child_frame"  value="virtual_base_link" />
+            <param name="cmd_vel_topic"  value="$(arg cmd_vel_topic)" />
+            <param name="dt"  value="0.05" />
+            <param name="delayed_step"  value="6" />
+        </node>
 
-    <!-- Rviz -->
-    <node pkg="rviz" type="rviz" name="rviz" required="true"
-        args="-d $(find erp42_navigation)/rviz/regulated_purepursuit_planner_rviz.rviz"/>
+        <!-- Rviz -->
+        <node pkg="rviz" type="rviz" name="rviz" required="true"
+            args="-d $(find erp42_navigation)/rviz/regulated_purepursuit_planner_rviz.rviz"/>
+    </group>
 
 </launch>

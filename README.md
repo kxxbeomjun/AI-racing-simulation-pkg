@@ -44,13 +44,12 @@ $ roslaunch erp42_vehicle_gazebo erp42_navigation_demo.launch
 $ roslaunch erp42_vehicle_gazebo erp42_gazebo_sim_multi.launch
 ```
 
-**launch with rendering**
-
-```bash
-$ roslaunch erp42_vehicle_gazebo erp42_gazebo_sim_multi.launch gui:=true
-```
-
 **launch demo navigation**
+
+사용전 `erp42_vehicle_gazebo/launch/erp42_navigation_demo.launch` 파일의 group ns를 원하는 차량으로 수정할 것.
+single vehicle 시뮬레이션시, `group ns="/"` 으로 세팅 
+
+현재 `virtual frame broadcaster`의 tf 발행시 group ns가 반영되지 않고 있음.
 
 ```bash
 $ roslaunch erp42_vehicle_gazebo erp42_navigation_demo.launch
