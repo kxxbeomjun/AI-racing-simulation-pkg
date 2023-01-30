@@ -41,6 +41,11 @@ $ roslaunch erp42_vehicle_gazebo erp42_gazebo_sim_multi.launch
 $ roslaunch erp42_vehicle_gazebo erp42_navigation_multi.launch
 ```
 
+### Run Simulator with movebase_follwer (Multiple vehicle)
+```bash
+$ roslaunch erp42_vehicle_gazebo erp42_navigation_multi.launch autostart:=true
+```
+
 ## 그 외 기타 설명
 
 [ERP42 simulator trouble shooting/issues](./docs/troubleshooting_issues.md)

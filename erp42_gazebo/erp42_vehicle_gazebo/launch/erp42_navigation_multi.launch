@@ -68,6 +68,7 @@
     <!-- recursively start new node -->
     <include file="$(find erp42_vehicle_gazebo)/launch/erp42_navigation_multi.launch" if="$(eval arg('total_vehicle_num') - 1 > 0)">
         <arg name="total_vehicle_num" value="$(eval arg('total_vehicle_num') - 1)"/>
+        <arg name="autostart" default="$(arg autostart)" />
     </include>
 
 </launch>
