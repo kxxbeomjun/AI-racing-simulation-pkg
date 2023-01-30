@@ -8,12 +8,12 @@
     <arg name="gui" default="false" />
 
     <!-- Vehicle initial pose -->
-    <arg name="x" default="-106.97" />
-    <arg name="y" default="31.89" />
+    <arg name="x" default="-180.0" />
+    <arg name="y" default="-30.0" />
     <arg name="z" default="1.00" />
     <arg name="roll" default="0.0"/>
     <arg name="pitch" default="0.0"/>
-    <arg name="yaw" default="-3.0"/>
+    <arg name="yaw" default="0.02"/>
 
     <remap from="/ackermann_steering_controller/cmd_vel" to="/cmd_vel" />
     <remap from="/ackermann_steering_controller/odom" to="/odom" />
@@ -62,5 +62,6 @@
     </group>
 
     <node pkg="message_to_tf" type="message_to_tf" name="message_to_tf" args="/ground_truth_pose"/>
+
 
 </launch>

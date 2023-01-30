@@ -34,7 +34,7 @@ RegulatedPurePursuitController:
   use_cost_regulated_linear_velocity_scaling: true      # Whether to use the regulated features for proximity to obstacles
   inflation_cost_scaling_factor: 2.0 #default 0.5       # The value of cost_scaling_factor set for the inflation layer in the local costmap. The value should be exactly the same for accurately computing distance from obstacles using the inflated cell values
   cost_scaling_dist: 2.5 #default 0.6                   # The minimum distance from an obstacle to trigger the scaling of linear velocity, if use_cost_regulated_linear_velocity_scaling is enabled. The value set should be smaller or equal to the inflation_radius set in the inflation layer of costmap, since inflation is used to compute the distance from obstacles
-  cost_scaling_gain: 0.7 #default 1.0                   # A multiplier gain, which should be <= 1.0, used to further scale the speed when an obstacle is within cost_scaling_dist. Lower value reduces speed more quickly.
+  cost_scaling_gain: 0.2 #default 1.0                   # A multiplier gain, which should be <= 1.0, used to further scale the speed when an obstacle is within cost_scaling_dist. Lower value reduces speed more quickly.
 
   # Collision avoidance
   use_collision_detection: true

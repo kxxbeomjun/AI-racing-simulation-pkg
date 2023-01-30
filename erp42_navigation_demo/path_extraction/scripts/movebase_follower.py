@@ -49,7 +49,7 @@ class MoveBaseFollower:
         self.config = dict()
 
         while not rospy.is_shutdown():
-            # self.update_status()
+            self.update_status()
             self.send_goal()
             # self.setPlannerParam()
             # self.reconfigure(self.client)
@@ -64,9 +64,11 @@ class MoveBaseFollower:
 
     def update_status(self):
         tf_recieved = False
+        print("self.path_frmame:%s, self.robot_frame:%s"%(self.path_frame, self.robot_frame))
         while not tf_recieved:
             try:
                 trans = self.tfBuffer.lookup_transform(self.path_frame, self.robot_frame, rospy.Time())
+                #print("tf received")
                 tf_recieved = True
                 self.status_msg.pose.position.x = trans.transform.translation.x
                 self.status_msg.pose.position.y = trans.transform.translation.y
@@ -146,79 +148,6 @@ class MoveBaseFollower:
 
         self.goal_pub.publish(self.goal)
         print("current index, goal_index, goal_position : ", self.current_waypoint, goal_index, goal_point.pose.position.x, goal_point.pose.position.y)
-
-    def setPlannerParam(self):
-        if self.current_waypoint >= 1000 and self.current_waypoint < 1160:
-            self.zone_idx = 'C-curve to C-curve' # pink; first C-curve
-            self.set_desired_linear_vel(4.5)
-
-        # if self.current_waypoint >= 1000 or self.current_waypoint < 1050:
-        #     self.zone_idx = 'C-curve' # pink; first C-curve
-        #     self.set_desired_linear_vel(4.0)
-        
-        # elif self.current_waypoint >= 1110 or self.current_waypoint < 10:
-        #     self.zone_idx = 'C-curve' # pink; second C-curve
-        #     self.set_desired_linear_vel(4.0)
-            
-        elif self.current_waypoint >= 156 and self.current_waypoint < 286:
-            self.zone_idx = 'S-curve' # green; first S-curve
-            self.set_desired_linear_vel(4.5)
-        
-        elif self.current_waypoint >= 446 and self.current_waypoint < 544:
-            self.zone_idx = 'U-turn' # yellow; U-turn
-            self.set_desired_linear_vel(4.5)
-
-        elif self.current_waypoint >= 544 and self.current_waypoint < 707:
-            self.zone_idx = 'straight_down' # yellow; U-turn
-            self.set_desired_linear_vel(5.0)
-
-        elif self.current_waypoint >= 707 and self.current_waypoint < 827:
-            self.zone_idx = 'S-curve' # green; second S-curve
-            self.set_desired_linear_vel(4.5)
-
-        elif self.current_waypoint >= 286 and self.current_waypoint < 446:
-            self.zone_idx = 'Straight_hill'
-            self.set_desired_linear_vel(5.56)
-            # self.set_lookahead_time()
-            # self.set_inflation_radius()
-            
-        else:
-            self.zone_idx = 'Straight'
-            self.set_desired_linear_vel(5.56)
-            
-        # if self.zone_idx == 4:
-        #     self.lai = 12
-            
-        # else:
-        #     self.lai = 400
-
-        # self.zone_idx_last = self.zone_idx
-        # lad_last = rospy.get_param('/move_base/PurePursuitPlannerROS/look_ahead_distance')
-        # vref_last = rospy.get_param('/move_base/PurePursuitPlannerROS/vel_ref')
-        # inflation_last = rospy.get_param('/move_base/global_costmap/inflation_layer/inflation_radius')
-
-        print("zone: ", self.zone_idx)
-        # set_desired_linear_vel = rospy.get_param('/move_base/RegulatedPurePursuitController/desired_linear_vel')
-        # print("set desired_linear_vel: ", set_desired_linear_vel)
-        # print("Vref: ", vref_last)
-        # print("Inflation: ", inflation_last)
-        
-    def set_desired_linear_vel(self, desired_linear_vel):
-        self.desired_linear_vel_ = desired_linear_vel
-
-    def set_lookahead_time(self, lookahead_time):
-        rospy.set_param('/move_base/PurePursuitPlannerROS/vel_ref', lookahead_time)
-
-    def set_inflation_radius(self, inflation_radius):
-        rospy.set_param('/move_base/global_costmap/inflation_layer_global/inflation_radius', inflation_radius)
-        rospy.set_param('/move_base/RegulatedPurePursuitController/cost_scaling_dist', inflation_radius)
-
-    def set_min_lookahead_dist(self, min_lookahead_dist):
-        rospy.set_param('/move_base/RegulatedPurePursuitController/min_lookahead_dist', min_lookahead_dist)
-
-    def set_cost_scaling_dist(self, cost_scaling_dist):
-        rospy.set_param('/move_base/RegulatedPurePursuitController/cost_scaling_dist', cost_scaling_dist)
-
     
 # Parameter List
 # /move_base/RegulatedPurePursuitController/cost_scaling_dist

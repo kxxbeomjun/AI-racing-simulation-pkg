@@ -7,12 +7,12 @@
     <arg name="model" default="$(find erp42_vehicle_description)/urdf/erp42_vehicle.urdf.xacro"/>
     
     <!-- Vehicle initial pose for vehicle2 (vehicle 1 has -3 translation with y coordinate) -->
-    <arg name="x" default="-106.97" />
-    <arg name="y" default="32.89" />
+    <arg name="x" default="-180.0" />
+    <arg name="y" default="-30.0" />
     <arg name="z" default="1.00" />
     <arg name="roll" default="0.0"/>
     <arg name="pitch" default="0.0"/>
-    <arg name="yaw" default="-3.16"/>
+    <arg name="yaw" default="0.02"/>
 
     <!-- Launch ERP42 -->
     <group ns="/erp42_$(arg total_vehicle_num)">

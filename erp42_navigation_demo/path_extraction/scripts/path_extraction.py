@@ -11,7 +11,7 @@ import tf2_ros
 from math import pi,cos,sin,pi,sqrt,pow
 from nav_msgs.msg import Path, Odometry
 from sensor_msgs.msg import NavSatFix
-from geometry_msgs.msg import PoseStamped
+from geometry_msgs.msg import PoseStamped, Pose
 from math import cos,sin,sqrt,pow,atan2,pi
 import tf
 #import tf2_ros
@@ -27,8 +27,8 @@ class PathExtraction :
         self.path_msg = Path()
         
         # ROS Subscriber
-        rospy.Subscriber("/nav_sat/fix", NavSatFix, self.gpsCallback)
-        #rospy.Subscriber("/Ego_globalstate", Odometry, self.poseCallback)
+        #rospy.Subscriber("/nav_sat/fix", NavSatFix, self.gpsCallback)
+        rospy.Subscriber("/Ego_globalstate", Odometry, self.poseCallback)
 
         # print('configure start')
         self.configure()
@@ -48,7 +48,7 @@ class PathExtraction :
 
         self.tfBuffer = tf2_ros.Buffer()
         self.listener = tf2_ros.TransformListener(self.tfBuffer)
-        self.status_msg = PoseStamped()
+        self.status_msg = Pose()
 
         self.path_frame_id = 'map'
         self.path_frame = 'map'
@@ -95,13 +95,13 @@ class PathExtraction :
             try:
                 trans = self.tfBuffer.lookup_transform(self.path_frame, self.robot_frame, rospy.Time())
                 tf_recieved = True
-                self.status_msg.pose.position.x = trans.transform.translation.x
-                self.status_msg.pose.position.y = trans.transform.translation.y
-                self.status_msg.pose.position.z = trans.transform.translation.z
-                self.status_msg.pose.orientation.x = trans.transform.rotation.x
-                self.status_msg.pose.orientation.y = trans.transform.rotation.y
-                self.status_msg.pose.orientation.z = trans.transform.rotation.z
-                self.status_msg.pose.orientation.w = trans.transform.rotation.w
+                self.status_msg.position.x = trans.transform.translation.x
+                self.status_msg.position.y = trans.transform.translation.y
+                self.status_msg.position.z = trans.transform.translation.z
+                self.status_msg.orientation.x = trans.transform.rotation.x
+                self.status_msg.orientation.y = trans.transform.rotation.y
+                self.status_msg.orientation.z = trans.transform.rotation.z
+                self.status_msg.orientation.w = trans.transform.rotation.w
                 
             except (tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException):
                 continue
@@ -111,14 +111,14 @@ class PathExtraction :
 
         self.path_frame_id = msg.header.frame_id # map frame
         self.status_msg= msg.pose.pose
-        Ego_HeadingAngle = [self.status_msg.orientation.x, self.status_msg.orientation.y, self.status_msg.orientation.z, self.status_msg.orientation.w]
+        # Ego_HeadingAngle = [self.status_msg.orientation.x, self.status_msg.orientation.y, self.status_msg.orientation.z, self.status_msg.orientation.w]
 
-        self.TFsender = tf.TransformBroadcaster()
-        self.TFsender.sendTransform((self.status_msg.position.x, self.status_msg.position.y, 0),
-                        Ego_HeadingAngle,
-                        rospy.Time.now(),
-                        "gps", # child frame "base_link"
-                        "map") # parent frame "map"
+        # self.TFsender = tf.TransformBroadcaster()
+        # self.TFsender.sendTransform((self.status_msg.position.x, self.status_msg.position.y, 0),
+        #                 Ego_HeadingAngle,
+        #                 rospy.Time.now(),
+        #                 "gps", # child frame "base_link"
+        #                 "map") # parent frame "map"
 
         # self.TFlistener = tf.TransformListener()
         # try:
@@ -130,8 +130,8 @@ class PathExtraction :
         # linear = 0.5 * sqrt(trans[0] ** 2 + trans[1] ** 2)
 
     def savePath(self): 
-        x = self.status_msg.pose.position.x
-        y = self.status_msg.pose.position.y
+        x = self.status_msg.position.x
+        y = self.status_msg.position.y
         z = 0
 
         # distance between 2 path points
@@ -146,14 +146,14 @@ class PathExtraction :
             # debug 
             print(x,y)
             
-            last_point = PoseStamped()
-            last_point.pose.position.x = x
-            last_point.pose.position.y = y
-            last_point.pose.position.z = 0
-            last_point.pose.orientation.x = 0
-            last_point.pose.orientation.y = 0
-            last_point.pose.orientation.z = 0
-            last_point.pose.orientation.w = 1
+            last_point = Pose()
+            last_point.position.x = x
+            last_point.position.y = y
+            last_point.position.z = 0
+            last_point.orientation.x = 0
+            last_point.orientation.y = 0
+            last_point.orientation.z = 0
+            last_point.orientation.w = 1
 
             self.path_msg.header.frame_id = self.path_frame_id
             # self.path_msg.header.frame_id = 'map'

@@ -12,7 +12,7 @@
 
     <group ns="/">
         <!-- move_base -->
-        <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+        <!-- <<node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen"> -->
             <rosparam file="$(find erp42_navigation)/params/costmap/costmap_common_params.yaml" command="load" ns="global_costmap" />
             <rosparam file="$(find erp42_navigation)/params/costmap/costmap_common_params.yaml" command="load" ns="local_costmap" />
             <rosparam file="$(find erp42_navigation)/params/costmap/local_costmap_params.yaml" command="load" />
@@ -32,7 +32,7 @@
             <remap from="odom" to="$(arg odom_topic)"/>
 
             <param name="clearing_rotation_allowed" value="false" /> <!-- Our carlike robot is not able to rotate in place -->
-        </node>
+        <!-- </node> -->
 
         <!-- Publish delay -->
         <node pkg="erp42_gazebo_control" name="delay_publish" type="delay_publish.py" respawn="false" />

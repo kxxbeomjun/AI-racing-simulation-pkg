@@ -62,7 +62,7 @@ inflation_layer_global:
 inflation_layer_local:
   enabled:              true
   cost_scaling_factor:  1.0    # exponential rate at which the obstacle cost drops off (4.0) 
-  inflation_radius:     1.5 # max. distance from an obstacle at which costs are incurred for planning paths. (with TEB :1.0, with PurePursuit: 1.5)
+  inflation_radius:     2.5 # max. distance from an obstacle at which costs are incurred for planning paths. (with TEB :1.0, with PurePursuit: 1.5)
 
 static_layer:
   enabled:              true
