@@ -36,15 +36,8 @@ $ roslaunch erp42_vehicle_gazebo erp42_navigation_demo.launch
 
 ### Run Simulator (Multiple vehicle)
 
-**launch with renderless**
-
 ```bash
 $ roslaunch erp42_vehicle_gazebo erp42_gazebo_sim_multi.launch
-```
-
-**launch demo navigation**
-
-```bash
 $ roslaunch erp42_vehicle_gazebo erp42_navigation_multi.launch
 ```
 
