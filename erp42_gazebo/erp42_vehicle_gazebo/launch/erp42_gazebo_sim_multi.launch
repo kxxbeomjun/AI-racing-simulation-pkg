@@ -3,7 +3,7 @@
 
     <!-- Simulator configuration -->
     <arg name="gui" default="false" />
-    <arg name="open_rviz" default="true"/>
+    <arg name="open_rviz" default="false"/>
     <arg name="rviz_file" default="$(find erp42_vehicle_gazebo)/rviz/erp42_sim_basic.rviz" />
     <arg name="use_sim_time" default="true"/>
 
@@ -11,6 +11,12 @@
 
     <!-- Vehicle configuration -->
     <arg name="total_vehicle_num" default="2" />
+
+    <!-- Remap topics -->
+    <remap from="/erp42_1/ackermann_steering_controller/cmd_vel" to="/erp42_1/cmd_vel" />
+    <remap from="/erp42_1/ackermann_steering_controller/odom" to="/erp42_1/odom" />
+    <remap from="/erp42_2/ackermann_steering_controller/cmd_vel" to="/erp42_2/cmd_vel" />
+    <remap from="/erp42_2/ackermann_steering_controller/odom" to="/erp42_2/odom" />
 
     <!-- Launch gazebo sim and load track -->
     <include file="$(find erp42_vehicle_gazebo)/launch/erp42_gazebo_track.launch">

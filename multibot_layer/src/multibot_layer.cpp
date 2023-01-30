@@ -20,7 +20,8 @@ PLUGINLIB_EXPORT_CLASS(multibot_layer_namespace::MultibotLayer, costmap_2d::Laye
 		dsrv_->setCallback(cb);
 
 		vehicle_num_ = 0;
-		nh.getParam("/total_vehicle", total_vehicle_);
+		nh.getParam("total_vehicle", total_vehicle_);
+		ROS_INFO("Total vehicle: %d", total_vehicle_);
 	}
 
 
@@ -39,20 +40,21 @@ PLUGINLIB_EXPORT_CLASS(multibot_layer_namespace::MultibotLayer, costmap_2d::Laye
 		nh.setParam("pose_x", origin_x);
 		nh.setParam("pose_y", origin_y);
 
-		for (int i = 0; i < total_vehicle_; i++) {
-			std::string robot_pose = "/vehicle";
+		for (int i = 1; i < total_vehicle_+1; i++) {
+			std::string robot_pose = "/erp42_";
 			std::string robot_x;
 			std::string robot_y;
 			std::string this_bot;
-			// search for the full posename of the current robot. Eg, this_bot = "vehicle_<current_robot_number>/pose_x".
+			// search for the full posename of the current robot. Eg, this_bot = "/erp42_<current_robot_number>/pose_x".
 			nh.searchParam("pose_x", this_bot);  
 
-
-			robot_pose.append(std::to_string(i));  // set robot_pose to "/vehicle<i=1~>"
+			
+			robot_pose.append(std::to_string(i));  // set robot_pose to "/erp42_<i=1~>"
 			robot_x = robot_y = robot_pose;  // give robot_x and robot_y the same prefix
-			robot_x.append("/pose_x");  // set robot_x to "/nb2_<i>/pose_x"
-			robot_y.append("/pose_y");  // set robot_y to "/nb2_<i>/pose_y"
-
+			robot_x.append("/pose_x");  // set robot_x to "/erp42_<i>/pose_x"
+			robot_y.append("/pose_y");  // set robot_y to "/erp42_<i>/pose_y"
+			// ROS_INFO("Seach param: %s", robot_x.c_str());
+			// ROS_INFO("this_bot: %s", this_bot.c_str());
 			// Save poses of every robot, except itself, in mark[][] array
 			if (nh.searchParam(robot_x, robot_x) && robot_x != this_bot) {
 				nh.getParam(robot_x, mark[i][0]);
@@ -77,7 +79,9 @@ PLUGINLIB_EXPORT_CLASS(multibot_layer_namespace::MultibotLayer, costmap_2d::Laye
 			return;
 		unsigned int mx;
 		unsigned int my;
-		for (int i = 0; i < total_vehicle_; i++) {
+		
+		for (int i = 1; i < total_vehicle_+1; i++) {
+			//ROS_INFO("set cost in %f", mark[i][0]);
 			if(master_grid.worldToMap(mark[i][0], mark[i][1], mx, my)){
 				master_grid.setCost(mx, my, LETHAL_OBSTACLE);
 			}

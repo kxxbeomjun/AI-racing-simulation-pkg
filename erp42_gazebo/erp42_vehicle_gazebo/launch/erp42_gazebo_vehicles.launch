@@ -6,13 +6,13 @@
     <arg name="use_sim_time" default="true"/>
     <arg name="model" default="$(find erp42_vehicle_description)/urdf/erp42_vehicle.urdf.xacro"/>
     
-    <!-- Vehicle initial pose -->
+    <!-- Vehicle initial pose for vehicle2 (vehicle 1 has -3 translation with y coordinate) -->
     <arg name="x" default="-106.97" />
-    <arg name="y" default="31.89" />
+    <arg name="y" default="32.89" />
     <arg name="z" default="1.00" />
     <arg name="roll" default="0.0"/>
     <arg name="pitch" default="0.0"/>
-    <arg name="yaw" default="-3.0"/>
+    <arg name="yaw" default="-3.16"/>
 
     <!-- Launch ERP42 -->
     <group ns="/erp42_$(arg total_vehicle_num)">
@@ -20,6 +20,8 @@
         <!-- Load the robot description -->
         <param name="tf_prefix" value="erp42_$(arg total_vehicle_num)" />
         <param name="robot_description" command="$(find xacro)/xacro $(arg model)"/>
+
+        
 
         <!-- Load ros_controllers configuration parameters -->
         <rosparam file="$(find erp42_gazebo_control)/config/ctrl_ackermann_steering_controller.yaml" command="load" ns="/erp42_$(arg total_vehicle_num)" />
@@ -30,8 +32,6 @@
         <!-- Spawn the controllers -->
         <node pkg="controller_manager" type="spawner" name="controller_spawner" ns="/erp42_$(arg total_vehicle_num)"
             args="joint_state_publisher ackermann_steering_controller" respawn="false">
-            <remap from="ackermann_steering_controller/cmd_vel" to="cmd_vel" />
-            <remap from="ackermann_steering_controller/odom" to="odom" />
         </node>
 
         <!-- Launch  the robot state publisher -->
@@ -63,6 +63,7 @@
     <!-- recursively start new node -->
     <include file="$(find erp42_vehicle_gazebo)/launch/erp42_gazebo_vehicles.launch" if="$(eval arg('total_vehicle_num') - 1 > 0)">
         <arg name="total_vehicle_num" value="$(eval arg('total_vehicle_num') - 1)"/>
+        <arg name="y" value="$(eval arg('y') - 3.0)"/>
         <arg name="use_sim_time" value="$(arg use_sim_time)"/>
     </include>
 
