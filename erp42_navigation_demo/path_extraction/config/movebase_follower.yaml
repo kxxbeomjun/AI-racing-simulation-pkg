@@ -1,0 +1,6 @@
+path_file_name: sunmoon_sim_manual.txt # path_songdo_221018_center.txt
+path_frame: map                      #
+robot_frame: virtual_base_link 
+frequency: 0.5                        # 2021-final 0.25 Hz
+look_ahead_index: 5                 # total length 1134
+

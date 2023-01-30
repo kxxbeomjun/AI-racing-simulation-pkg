@@ -10,8 +10,6 @@
     <arg name="cmd_vel_topic" default="/$(arg namespace)/cmd_vel" />
     <arg name="odom_topic" default="ground_truth_pose" />
     
-    
-
     <group ns="$(arg namespace)">
         
         <!-- Map server -->
@@ -56,11 +54,13 @@
             args="-d $(find erp42_vehicle_gazebo)/rviz/$(arg namespace)_config.rviz"/>
 
         <!-- For autostart -->
-        <node pkg="path_extraction" type="movebase_follower_new.py" name="movebase_follower" if="$(arg autostart)" output="screen">
-            <param name="path_file_name" value="sunmoon_in.txt" />
+        <node pkg="path_extraction" type="movebase_follower.py" name="movebase_follower" if="$(arg autostart)" output="screen">
+            <param name="path_file_name" value="sunmoon_sim_manual.txt" />
             <param name="path_frame"  value="/$(arg namespace)/base_link" />
-            <param name="look_ahead_index"  value="100" />
+            <param name="robot_frame" value="/$(arg namespace)/virtual_base_link" />
+            <param name="look_ahead_index"  value="4" />
             <param name="frequency"  value="10" />
+            <!-- <remap from="/move_base_simple/goal" to="/$(arg namespace)/move_base_simple/goal" /> -->
         </node>
         
     </group>

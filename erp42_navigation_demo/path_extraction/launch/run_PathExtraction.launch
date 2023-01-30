@@ -1,0 +1,20 @@
+<launch>
+	<!-- <arg name="x" value="0.00" />
+	<arg name="y" value="0.00" />
+	<arg name="z" value="0" />
+
+	<arg name="roll" value="0.0" />
+	<arg name="pitch" value="0.0" />
+	<arg name="yaw" value="0.0" /> -->
+
+	<node pkg="path_extraction" type="path_extraction.py" name="path_extraction" output="screen">
+		<rosparam file="$(find path_extraction)/config/path_extraction.yaml" command="load" />
+
+		<remap from="/nav_sat/fix" to="/ublox/fix" /> <!-- gps for map origin -->
+		<remap from="/Ego_globalstate" to="/map2gps_pose" /> <!-- Path TF (default = odometry) -->
+	</node>
+
+	<!-- <node pkg="tf" type="static_transform_publisher" name="map2odom" args="$(arg x) $(arg y) $(arg z) $(arg yaw) $(arg pitch) $(arg roll) /map /odom 100"/> -->
+
+	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find path_extraction)/rviz/pathextraction_map.rviz"/>
+</launch>

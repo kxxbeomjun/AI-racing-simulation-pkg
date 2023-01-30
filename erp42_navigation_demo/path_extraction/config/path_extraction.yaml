@@ -1,0 +1,4 @@
+path_directory_name: path           
+path_file_name: sunmoon_center_1103.txt
+
+min_sample_distance: 0.5            # minimum path distance between subsequent path points (m)

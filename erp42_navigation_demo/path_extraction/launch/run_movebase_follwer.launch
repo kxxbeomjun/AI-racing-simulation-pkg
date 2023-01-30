@@ -1,0 +1,5 @@
+<launch>
+	<node pkg="path_extraction" type="movebase_follower.py" name="movebase_follower" output="screen">
+		<rosparam file="$(find path_extraction)/config/movebase_follower.yaml" command="load" />
+	</node>
+</launch>
