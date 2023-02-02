@@ -41,13 +41,13 @@
         <!-- <node pkg="erp42_gazebo_control" name="delay_publish" type="delay_publish.py" respawn="false" /> -->
 
         <!-- Virtual frame broadcaster -->
-        <node pkg="virtual_frame_broadcaster" type="virtual_frame_broadcaster_node" name="virtual_frame_broadcaster" output="screen">
+        <!-- <node pkg="virtual_frame_broadcaster" type="virtual_frame_broadcaster_node" name="virtual_frame_broadcaster" output="screen">
             <param name="parent_frame" value="$(arg namespace)/base_link" />
             <param name="child_frame"  value="$(arg namespace)/virtual_base_link" />
             <param name="cmd_vel_topic"  value="/$(arg namespace)/$(arg cmd_vel_topic)" />
             <param name="dt"  value="0.05" />
             <param name="delayed_step"  value="6" />
-        </node>
+        </node> -->
 
         <!-- Rviz -->
         <node pkg="rviz" type="rviz" name="rviz" required="true" if="$(arg open_rviz)"
@@ -57,7 +57,7 @@
         <node pkg="path_extraction" type="movebase_follower.py" name="movebase_follower" if="$(arg autostart)" output="screen">
             <param name="path_file_name" value="sunmoon_sim_center.txt" />
             <param name="path_frame"  value="map" />
-            <param name="robot_frame" value="$(arg namespace)/virtual_base_link" />
+            <param name="robot_frame" value="$(arg namespace)/base_link" />
             <param name="look_ahead_index"  value="20" />
             <param name="frequency"  value="10" />
             <!-- <remap from="/move_base_simple/goal" to="/$(arg namespace)/move_base_simple/goal" /> -->

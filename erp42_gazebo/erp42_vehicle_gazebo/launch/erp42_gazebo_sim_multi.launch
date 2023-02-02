@@ -3,6 +3,7 @@
 
     <!-- Simulator configuration -->
     <arg name="gui" default="false" />
+    <arg name="verbose" default="true" />
     <arg name="open_rviz" default="false"/>
     <arg name="rviz_file" default="$(find erp42_vehicle_gazebo)/rviz/erp42_sim_basic.rviz" />
     <arg name="use_sim_time" default="true"/>
@@ -24,6 +25,7 @@
         <arg name="open_rviz" value="$(arg open_rviz)"/>
         <arg name="use_sim_time" value="$(arg use_sim_time)"/>
         <arg name="map_name" value="$(arg map_name)"/>
+        <arg name="verbose" value="$(arg verbose)" />
     </include>
     
     <!-- Load ERP42 Vehicles -->

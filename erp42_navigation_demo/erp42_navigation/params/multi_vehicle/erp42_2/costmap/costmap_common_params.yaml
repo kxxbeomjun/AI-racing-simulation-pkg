@@ -4,7 +4,7 @@ footprint_padding: 0.01
 transform_tolerance: 0.5
 map_type: costmap
 
-robot_base_frame: erp42_2/virtual_base_link
+robot_base_frame: erp42_2/base_link
 update_frequency: 20.0
 publish_frequency: 20.0
 resolution: 0.1
