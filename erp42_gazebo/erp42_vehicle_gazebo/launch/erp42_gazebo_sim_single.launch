@@ -5,7 +5,7 @@
     <arg name="namespace" default="/" />
     <arg name="world_name" default="$(find erp42_vehicle_gazebo)/worlds/sunmoon.world" />
     <arg name="use_sim_time" default="true"/>
-    <arg name="gui" default="false" />
+    <arg name="gui" default="true" />
 
     <!-- Vehicle initial pose -->
     <arg name="x" default="-180.0" />
@@ -15,7 +15,7 @@
     <arg name="pitch" default="0.0"/>
     <arg name="yaw" default="0.02"/>
 
-    <remap from="/ackermann_steering_controller/cmd_vel" to="/cmd_vel" />
+    <remap from="/ackermann_steering_controller/cmd_vel" to="/cmd_vel_real" />
     <remap from="/ackermann_steering_controller/odom" to="/odom" />
 
     <group ns="$(arg namespace)">
