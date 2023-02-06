@@ -16,6 +16,7 @@ from tf.transformations import quaternion_from_euler
 from lib.utils import pathReader, findLocalPath
 import dynamic_reconfigure.client
 
+
 class RankServer:
     def __init__(self):
         #init node 
@@ -91,8 +92,10 @@ class RankServer:
 
         for i, rank in enumerate(self.ranks):
             if rank == np.max(self.ranks):
+                self.clients[i].update_configuration({"max_allowed_velocity":4.0})
                 rospy.set_param('/erp42_'+str(i+1)+'/move_base/RegulatedPurePursuitController/max_allowed_velocity', 4.0)
             else:
+                self.clients[i].update_configuration({"max_allowed_velocity":5.0})
                 rospy.set_param('/erp42_'+str(i+1)+'/move_base/RegulatedPurePursuitController/max_allowed_velocity', 5.0)
 
 
@@ -110,7 +113,12 @@ class RankServer:
         self.prev_poses_idx = np.zeros(self.vehicle_num,dtype=int)
         self.look_ahead_index = 30
         self.initial_check = np.full((self.vehicle_num,), False)
-
+        self.client_1 = dynamic_reconfigure.client.Client("erp42_1/move_base/RegulatedPurePursuitController", timeout=30, config_callback=self.callback)
+        self.client_2 = dynamic_reconfigure.client.Client("erp42_2/move_base/RegulatedPurePursuitController", timeout=30, config_callback=self.callback)
+        self.clients = [self.client_1, self.client_2]
+    
+    def callback(self, config):
+        return config
 if __name__ == '__main__':
     RankServer()
 

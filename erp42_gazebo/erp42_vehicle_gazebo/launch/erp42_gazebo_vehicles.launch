@@ -64,6 +64,7 @@
     <include file="$(find erp42_vehicle_gazebo)/launch/erp42_gazebo_vehicles.launch" if="$(eval arg('total_vehicle_num') - 1 > 0)">
         <arg name="total_vehicle_num" value="$(eval arg('total_vehicle_num') - 1)"/>
         <arg name="y" value="$(eval arg('y') - 3.0)"/>
+        <arg name="x" value="$(eval arg('x') + 3.0)"/>
         <arg name="use_sim_time" value="$(arg use_sim_time)"/>
     </include>
 

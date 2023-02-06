@@ -7,6 +7,11 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
 )
 
+# dynamic reconfigure
+generate_dynamic_reconfigure_options(
+  cfg/InflationPlugin.cfg
+)
+
 catkin_package(
   INCLUDE_DIRS include
   LIBRARIES multibot_layers

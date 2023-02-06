@@ -337,7 +337,7 @@ namespace regulated_pure_pursuit_controller
             }
         }
         
-        ROS_INFO("linear_vel:%.3f, angular_vel:%.3f,curvature:%.3f",linear_vel, angular_vel, curvature);
+        ROS_INFO("linear_vel:%.3f, max_allowed_velocity_:%.3f, angular_vel:%.3f,curvature:%.3f, ",linear_vel, max_allowed_velocity_, angular_vel, curvature);
         // populate and return message
         cmd_vel.twist.linear.x = linear_vel;
         cmd_vel.twist.angular.z = angular_vel;
