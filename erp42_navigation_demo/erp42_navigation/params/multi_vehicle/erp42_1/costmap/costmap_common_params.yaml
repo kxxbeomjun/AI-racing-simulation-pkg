@@ -76,7 +76,7 @@ multibot_layer:
   total_vehicle: 2
   cost_scaling_factor:  1.0    
   inflation_radius:     2.5 
-  inflation_angle : 0.8
+  inflation_angle : 1.3
 
   # TODO
   
