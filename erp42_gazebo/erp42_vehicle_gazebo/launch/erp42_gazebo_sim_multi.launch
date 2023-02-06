@@ -34,6 +34,12 @@
         <arg name="use_sim_time" value="$(arg use_sim_time)"/>
     </include>
 
-    <!-- Load ERP42 Controller -->
+
+    <!-- For Rank Server -->
+    <node pkg="path_extraction" type="rank_server.py" name="rank_server" output="screen">
+        <param name="path_file_name" value="sunmoon_sim_center.txt" />
+        <param name="path_frame"  value="map" />
+        <param name="vehicle_num"  value="2" />
+    </node>
 
 </launch>

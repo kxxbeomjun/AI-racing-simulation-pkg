@@ -64,7 +64,7 @@ class MoveBaseFollower:
 
     def update_status(self):
         tf_recieved = False
-        print("self.path_frmame:%s, self.robot_frame:%s"%(self.path_frame, self.robot_frame))
+        #print("self.path_frmame:%s, self.robot_frame:%s"%(self.path_frame, self.robot_frame))
         while not tf_recieved:
             try:
                 trans = self.tfBuffer.lookup_transform(self.path_frame, self.robot_frame, rospy.Time())
@@ -91,7 +91,7 @@ class MoveBaseFollower:
         # /move_base/PurePursuitPlannerROS/look_ahead_distance
 
     def send_goal(self):
-        print("self.current_waypoint", self.current_waypoint)
+        #print("self.current_waypoint", self.current_waypoint)
         ## Local path중 look ahead distance 앞에 있는 점을 move base goal로 만듬 
         vehicle_pose = self.status_msg.pose.position
 
@@ -147,7 +147,7 @@ class MoveBaseFollower:
         self.goal.pose.orientation.w = quaternion[3]
 
         self.goal_pub.publish(self.goal)
-        print("current index, goal_index, goal_position : ", self.current_waypoint, goal_index, goal_point.pose.position.x, goal_point.pose.position.y)
+        #print("current index, goal_index, goal_position : ", self.current_waypoint, goal_index, goal_point.pose.position.x, goal_point.pose.position.y)
     
 # Parameter List
 # /move_base/RegulatedPurePursuitController/cost_scaling_dist

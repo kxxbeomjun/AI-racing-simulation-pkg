@@ -101,6 +101,7 @@ namespace regulated_pure_pursuit_controller
         nh.param<double>("desired_linear_vel", desired_linear_vel_, 0.5);
         nh.param<double>("max_angular_vel", max_angular_vel_, 1.5);
         nh.param<double>("min_approach_linear_velocity", min_approach_linear_velocity_, 0.05);
+        nh.param<double>("max_allowed_velocity", max_allowed_velocity_, 4.0);
 
         //Regulated linear velocity scaling
         nh.param<bool>("use_regulated_linear_velocity_scaling", use_regulated_linear_velocity_scaling_, false);
@@ -168,6 +169,8 @@ namespace regulated_pure_pursuit_controller
         //Collision avoidance
         ddr_->registerVariable<double>("max_allowed_time_to_collision_up_to_carrot", &this->max_allowed_time_to_collision_up_to_carrot_, "", 0.0, 10.0);
         ddr_->registerVariable<double>("goal_dist_tol", &this->goal_dist_tol_, "", 0.0, 4.0);
+
+        ddr_->registerVariable<double>("max_allowed_velocity", &this->max_allowed_velocity_, "", 0.0, 5.56);
 
         ddr_->publishServicesTopics();
         
@@ -303,7 +306,7 @@ namespace regulated_pure_pursuit_controller
         } 
         //Travel forward and accordinging to the curvature
         else {
-            ROS_INFO("1- linear_vel:%.3f, angular_vel:%.3f,curvature:%.3f",linear_vel, angular_vel, curvature);
+            //ROS_INFO("1- linear_vel:%.3f, angular_vel:%.3f,curvature:%.3f",linear_vel, angular_vel, curvature);
             //Constrain linear velocity
             applyConstraints(
                 std::fabs(lookahead_dist - sqrt(carrot_dist2)),
@@ -334,7 +337,7 @@ namespace regulated_pure_pursuit_controller
             }
         }
         
-        ROS_INFO("2- linear_vel:%.3f, angular_vel:%.3f,curvature:%.3f",linear_vel, angular_vel, curvature);
+        ROS_INFO("linear_vel:%.3f, angular_vel:%.3f,curvature:%.3f",linear_vel, angular_vel, curvature);
         // populate and return message
         cmd_vel.twist.linear.x = linear_vel;
         cmd_vel.twist.angular.z = angular_vel;
@@ -453,7 +456,8 @@ namespace regulated_pure_pursuit_controller
         linear_vel = std::clamp(fabs(linear_vel), 0.0, desired_linear_vel_);
         linear_vel = sign * linear_vel;
 
-
+        // Apply constraints by Rank
+        linear_vel = std::min(linear_vel, max_allowed_velocity_);
     }
     
     /**
@@ -490,7 +494,7 @@ namespace regulated_pure_pursuit_controller
             lookahead_dist = fabs(speed.linear.x) * lookahead_time_;
             lookahead_dist = std::clamp(lookahead_dist, min_lookahead_dist_, max_lookahead_dist_);
         }
-        ROS_INFO("lookahead_dist : %f\n", lookahead_dist);
+        //ROS_INFO("lookahead_dist : %f\n", lookahead_dist);
 
         return lookahead_dist;
     }
