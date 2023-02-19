@@ -32,3 +32,4 @@ multibot_layer:
   cost_scaling_factor:  1.0    
   inflation_radius:     2.5 
   inflation_angle : 1.3
+  search_distance : 20.0

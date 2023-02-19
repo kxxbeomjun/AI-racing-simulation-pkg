@@ -140,6 +140,7 @@ private:
   bool need_reinflation_;  
   double robot_yaw_;
   double inflation_angle_;
+  double search_distance_;
 };
 }
 #endif

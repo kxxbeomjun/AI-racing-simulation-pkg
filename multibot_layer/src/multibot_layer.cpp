@@ -46,6 +46,7 @@ PLUGINLIB_EXPORT_CLASS(multibot_layer_namespace::MultibotLayer, costmap_2d::Laye
 		}
 
 		vehicle_num_ = 0;
+		nh.getParam("search_distance", search_distance_);
 		nh.getParam("total_vehicle", total_vehicle_);
 		nh.getParam("inflation_angle", inflation_angle_);
 		ROS_INFO("Total vehicle: %d", total_vehicle_);
@@ -163,7 +164,8 @@ PLUGINLIB_EXPORT_CLASS(multibot_layer_namespace::MultibotLayer, costmap_2d::Laye
 		robot_yaw_ = robot_yaw;
 		nh.setParam("pose_x", robot_x);
 		nh.setParam("pose_y", robot_y);
-
+		double pose_x = robot_x;
+		double pose_y = robot_y;
 		for (int i = 1; i < total_vehicle_+1; i++) {
 			std::string robot_pose = "/erp42_";
 			std::string robot_x;
@@ -185,8 +187,8 @@ PLUGINLIB_EXPORT_CLASS(multibot_layer_namespace::MultibotLayer, costmap_2d::Laye
 				nh.getParam(robot_y, mark[i][1]);
 			} else {
 				vehicle_num_ = i;
-				mark[i][0] = 100;  // Set an unaffected pose for unused robots
-				mark[i][1] = 100;  // Set an unaffected pose for unused robots
+				mark[i][0] = pose_x;  // Set an unaffected pose for unused robots
+				mark[i][1] = pose_y;  // Set an unaffected pose for unused robots
 			} 
 
 			*min_x = std::min(*min_x, mark[i][0]);
@@ -267,9 +269,12 @@ PLUGINLIB_EXPORT_CLASS(multibot_layer_namespace::MultibotLayer, costmap_2d::Laye
 	
 		for (int i = 1; i < total_vehicle_+1; i++) {
 			//ROS_INFO("set cost in %f", mark[i][0]);
-			if(master_grid.worldToMap(mark[i][0], mark[i][1], mx, my)){
-				int index = master_grid.getIndex(mx, my);;
-				obs_bin.push_back(CellData(index, mx, my, mx, my));
+			if(i != vehicle_num_ && master_grid.worldToMap(mark[i][0], mark[i][1], mx, my)){
+				if(pow(mark[i][0]-mark[vehicle_num_][0],2) + pow(mark[i][1]-mark[vehicle_num_][1],2)
+					<pow(search_distance_,2)){
+					int index = master_grid.getIndex(mx, my);;
+					obs_bin.push_back(CellData(index, mx, my, mx, my));
+					}
 			}
 		}
 
