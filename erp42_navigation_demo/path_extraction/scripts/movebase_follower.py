@@ -70,6 +70,7 @@ class MoveBaseFollower:
                 trans = self.tfBuffer.lookup_transform(self.path_frame, self.robot_frame, rospy.Time())
                 #print("tf received")
                 tf_recieved = True
+                
                 self.status_msg.pose.position.x = trans.transform.translation.x
                 self.status_msg.pose.position.y = trans.transform.translation.y
                 self.status_msg.pose.position.z = trans.transform.translation.z
@@ -77,7 +78,6 @@ class MoveBaseFollower:
                 self.status_msg.pose.orientation.y = trans.transform.rotation.y
                 self.status_msg.pose.orientation.z = trans.transform.rotation.z
                 self.status_msg.pose.orientation.w = trans.transform.rotation.w
-                
             except (tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException):
                 continue
 

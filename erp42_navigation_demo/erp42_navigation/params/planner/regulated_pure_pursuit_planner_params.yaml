@@ -1,7 +1,7 @@
 RegulatedPurePursuitController:
 
   # Lookahead
-  lookahead_time: 1.0 #default 1.5                                   # The time to project the velocity by to find the velocity scaled lookahead distance. Also known as the lookahead gain.
+  lookahead_time: 2.0 #default 1.5                                   # The time to project the velocity by to find the velocity scaled lookahead distance. Also known as the lookahead gain.
   # 3.0
   lookahead_dist: 6.5 #default 0.25                     # The lookahead distance to use to find the lookahead point
   use_velocity_scaled_lookahead_dist: true #default false             # Whether to use the velocity scaled lookahead distances or constant lookahead_distance

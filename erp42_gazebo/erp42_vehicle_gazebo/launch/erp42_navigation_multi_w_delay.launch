@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- Arguments -->
+    <arg name="autostart" default="false" />
+    <arg name="total_vehicle_num" default="2" />
+    <arg name="namespace" default="erp42_$(arg total_vehicle_num)"/>
+    <arg name="map_file" default="$(find erp42_vehicle_gazebo)/maps/sunmoon.yaml" />
+    <arg name="open_rviz" default="true"/>
+    <arg name="move_forward_only" default="true"/>
+    <arg name="cmd_vel_topic" default="/$(arg namespace)/cmd_vel_real" />
+    <arg name="odom_topic" default="ground_truth_pose" />
+    
+    <group ns="$(arg namespace)">
+        
+        <!-- Map server -->
+        <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)" />
+        <!-- move_base -->
+        <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+            <rosparam file="$(find erp42_navigation)/params/multi_vehicle/$(arg namespace)/costmap/with_delay/costmap_common_params.yaml" command="load" ns="global_costmap" />
+            <rosparam file="$(find erp42_navigation)/params/multi_vehicle/$(arg namespace)/costmap/with_delay/costmap_common_params.yaml" command="load" ns="local_costmap" />
+            <rosparam file="$(find erp42_navigation)/params/multi_vehicle/$(arg namespace)/costmap/with_delay/local_costmap_params.yaml" command="load" />
+            <rosparam file="$(find erp42_navigation)/params/multi_vehicle/$(arg namespace)/costmap/with_delay/global_costmap_params.yaml" command="load" />
+            <rosparam file="$(find erp42_navigation)/params/move_base_params.yaml" command="load" />
+            <rosparam file="$(find erp42_navigation)/params/planner/regulated_pure_pursuit_planner_params.yaml" command="load" />
+
+            <param name="base_global_planner" value="global_planner/GlobalPlanner" />
+            <param name="planner_frequency" value="10.0" />
+            <param name="planner_patience" value="5.0" />
+
+            <param name="base_local_planner" value="regulated_pure_pursuit_controller/RegulatedPurePursuitController" />
+            <param name="controller_frequency" value="20.0" />
+            <param name="controller_patience" value="30.0" />
+
+            <remap from="cmd_vel" to="$(arg cmd_vel_topic)"/>
+            <remap from="odom" to="$(arg odom_topic)"/>
+
+            <param name="clearing_rotation_allowed" value="false" /> <!-- Our carlike robot is not able to rotate in place -->
+        </node>
+
+        <!-- Publish delay -->
+        <node pkg="erp42_gazebo_control" name="delay_publish" type="delay_publish.py" respawn="false" output="screen"/>
+
+        <!-- Virtual frame broadcaster -->
+        <node pkg="virtual_frame_broadcaster" type="virtual_frame_broadcaster_node" name="virtual_frame_broadcaster" output="screen">
+            <param name="parent_frame" value="$(arg namespace)/base_link" />
+            <param name="child_frame"  value="$(arg namespace)/virtual_base_link" />
+            <param name="cmd_vel_topic"  value="$(arg cmd_vel_topic)" />
+            <param name="dt"  value="0.05" />
+            <param name="delayed_step"  value="6" />
+        </node>
+
+        <!-- Rviz -->
+        <node pkg="rviz" type="rviz" name="rviz" required="true" if="$(arg open_rviz)"
+            args="-d $(find erp42_vehicle_gazebo)/rviz/$(arg namespace)_config.rviz"/>
+
+        <!-- For autostart -->
+        <node pkg="path_extraction" type="movebase_follower.py" name="movebase_follower" if="$(arg autostart)" output="screen">
+            <param name="path_file_name" value="sunmoon_sim_center.txt" />
+            <param name="path_frame"  value="map" />
+            <param name="robot_frame" value="$(arg namespace)/virtual_base_link" />
+            <param name="look_ahead_index"  value="50" />
+            <param name="frequency"  value="10" />
+            <!-- <remap from="/move_base_simple/goal" to="/$(arg namespace)/move_base_simple/goal" /> -->
+        </node>
+        
+    </group>
+
+    <!-- recursively start new node -->
+    <include file="$(find erp42_vehicle_gazebo)/launch/erp42_navigation_multi_w_delay.launch" if="$(eval arg('total_vehicle_num') - 1 > 0)">
+        <arg name="total_vehicle_num" value="$(eval arg('total_vehicle_num') - 1)"/>
+        <arg name="autostart" default="$(arg autostart)" />
+    </include>
+
+</launch>

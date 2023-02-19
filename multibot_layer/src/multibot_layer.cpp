@@ -265,19 +265,6 @@ PLUGINLIB_EXPORT_CLASS(multibot_layer_namespace::MultibotLayer, costmap_2d::Laye
 
 		std::vector<CellData>& obs_bin = inflation_cells_[0.0];
 	
-		for (int j = min_j; j < max_j; j++)
-		{
-			for (int i = min_i; i < max_i; i++)
-			{
-			int index = master_grid.getIndex(i, j);
-			unsigned char cost = master_array[index];
-			if (cost == LETHAL_OBSTACLE)
-			{
-				obs_bin.push_back(CellData(index, i, j, i, j));
-			}
-			}
-		}
-
 		for (int i = 1; i < total_vehicle_+1; i++) {
 			//ROS_INFO("set cost in %f", mark[i][0]);
 			if(master_grid.worldToMap(mark[i][0], mark[i][1], mx, my)){

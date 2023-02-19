@@ -4,7 +4,7 @@ footprint_padding: 0.01
 transform_tolerance: 0.5
 map_type: costmap
 
-robot_base_frame: erp42_1/base_link
+robot_base_frame: erp42_2/virtual_base_link
 update_frequency: 20.0
 publish_frequency: 20.0
 resolution: 0.1
@@ -21,11 +21,10 @@ inflation_layer_local:
 
 static_layer:
   enabled:              true
-  map_topic:            "/erp42_1/map"
-  first_map_only:       true
-  # unknown cost value: 253
-  # lethal_cost_threshold: 15
-  # track_unknown_space: true
+  map_topic:            "/map"
+  unknown cost value: 253
+  lethal_cost_threshold: 50
+  track_unknown_space: false
 
 multibot_layer:
   enabled:                  true
@@ -33,4 +32,3 @@ multibot_layer:
   cost_scaling_factor:  1.0    
   inflation_radius:     5.0 
   inflation_angle : 1.3
-
