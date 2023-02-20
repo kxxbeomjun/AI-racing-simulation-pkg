@@ -21,11 +21,10 @@ inflation_layer_local:
 
 static_layer:
   enabled:              true
-  map_topic:            "/erp42_1/map"
-  first_map_only:       true
-  # unknown cost value: 253
-  # lethal_cost_threshold: 15
-  # track_unknown_space: true
+  map_topic:            "/map"
+  unknown cost value: 253
+  lethal_cost_threshold: 50
+  track_unknown_space: false
 
 multibot_layer:
   enabled:                  true

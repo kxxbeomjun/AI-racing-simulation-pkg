@@ -3,7 +3,7 @@ local_costmap:
   robot_base_frame: erp42_2/virtual_base_link
   update_frequency: 20.0
   publish_frequency: 20.0
-  static_map: false
+  static_map: true
   rolling_window: true
   width: 50
   height: 50
