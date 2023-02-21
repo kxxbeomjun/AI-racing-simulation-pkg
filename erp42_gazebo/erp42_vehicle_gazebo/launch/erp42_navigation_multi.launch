@@ -58,8 +58,8 @@
             <param name="path_file_name" value="sunmoon_sim_center.txt" />
             <param name="path_frame"  value="map" />
             <param name="robot_frame" value="$(arg namespace)/base_link" />
-            <param name="look_ahead_index"  value="20" />
-            <param name="frequency"  value="10" />
+            <param name="look_ahead_index"  value="100" />
+            <param name="frequency"  value="0.25" />
             <!-- <remap from="/move_base_simple/goal" to="/$(arg namespace)/move_base_simple/goal" /> -->
         </node>
         
