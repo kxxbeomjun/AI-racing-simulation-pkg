@@ -36,7 +36,7 @@
 
 
     <!-- For Rank Server -->
-    <node pkg="path_extraction" type="rank_server.py" name="rank_server" output="screen">
+    <node pkg="path_extraction" type="referee_server.py" name="referee_server" output="screen">
         <param name="path_file_name" value="sunmoon_sim_center.txt" />
         <param name="path_frame"  value="map" />
         <param name="vehicle_num"  value="2" />

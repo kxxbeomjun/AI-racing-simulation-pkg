@@ -1,0 +1,3 @@
+bool start_sign # true : start false : stop
+---
+bool result

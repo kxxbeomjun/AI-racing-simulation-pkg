@@ -4,7 +4,7 @@ import rospy
 from geometry_msgs.msg import Twist
     
 def get_cmd(msg):
-    rospy.loginfo("Get linear: {0}".format(msg.linear.x))
+    #rospy.loginfo("Get linear: {0}".format(msg.linear.x))
     cmd_vel_Q.append(msg)
     pub_cmd()
 

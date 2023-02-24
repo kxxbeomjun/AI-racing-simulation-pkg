@@ -19,6 +19,7 @@ from math import cos,sin,sqrt,pow,atan2,pi
 from tf.transformations import quaternion_from_euler
 from lib.utils import pathReader, findLocalPath
 import dynamic_reconfigure.client
+from path_extraction.srv import StartRacing, StartRacingResponse
 
 class MoveBaseFollower:
     def __init__(self):
@@ -47,12 +48,12 @@ class MoveBaseFollower:
         
         self.client = dynamic_reconfigure.client.Client("move_base/RegulatedPurePursuitController", timeout=30, config_callback=self.configCallback)
         self.config = dict()
-
+        print("Creating service")
+        self.service = rospy.Service('start_racing', StartRacing, self.start_racing)
+        print("Creating service done")
         while not rospy.is_shutdown():
             self.update_status()
             self.send_goal()
-            # self.setPlannerParam()
-            # self.reconfigure(self.client)
             self.rate.sleep()
 
     def configCallback(self,config):
@@ -87,6 +88,7 @@ class MoveBaseFollower:
         self.robot_frame = rospy.get_param("~robot_frame")
         self.frequency = rospy.get_param("~frequency")
         self.lai = rospy.get_param("~look_ahead_index")
+        self.start_sign = rospy.get_param("~start_sign", True)
         # rospy.set_param('/move_base/PurePursuitPlannerROS/look_ahead_distance', 15.0)
         # /move_base/PurePursuitPlannerROS/look_ahead_distance
 
@@ -122,44 +124,70 @@ class MoveBaseFollower:
                     min_index = i
 
         self.current_waypoint = min_index
-        goal_index = self.current_waypoint + self.lai
-        adjacent_point_index = goal_index - 1
 
-        if goal_index > len(self.global_path.poses)-1:
-            goal_index = goal_index - len(self.global_path.poses)
-        
-        if adjacent_point_index > len(self.global_path.poses)-1:
-            adjacent_point_index = adjacent_point_index - len(self.global_path.poses)
-        
-        goal_point = self.global_path.poses[goal_index]
-        goal_yaw = atan2(goal_point.pose.position.y-self.global_path.poses[adjacent_point_index].pose.position.y,
-                        goal_point.pose.position.x-self.global_path.poses[adjacent_point_index].pose.position.x)
+        if self.start_sign:
+            goal_index = self.current_waypoint + self.lai
+            adjacent_point_index = goal_index - 1
 
-        self.goal = PoseStamped()
-        self.goal.header.frame_id = "map"
-        self.goal.header.stamp = rospy.Time.now()
-        self.goal.pose.position.x = goal_point.pose.position.x
-        self.goal.pose.position.y = goal_point.pose.position.y
-        quaternion = tf.transformations.quaternion_from_euler(0,0,goal_yaw)
-        self.goal.pose.orientation.x = quaternion[0]
-        self.goal.pose.orientation.y = quaternion[1]
-        self.goal.pose.orientation.z = quaternion[2]
-        self.goal.pose.orientation.w = quaternion[3]
+            if goal_index > len(self.global_path.poses)-1:
+                goal_index = goal_index - len(self.global_path.poses)
+            
+            if adjacent_point_index > len(self.global_path.poses)-1:
+                adjacent_point_index = adjacent_point_index - len(self.global_path.poses)
+            
+            goal_point = self.global_path.poses[goal_index]
+            goal_yaw = atan2(goal_point.pose.position.y-self.global_path.poses[adjacent_point_index].pose.position.y,
+                            goal_point.pose.position.x-self.global_path.poses[adjacent_point_index].pose.position.x)
 
-        self.goal_pub.publish(self.goal)
-        #print("current index, goal_index, goal_position : ", self.current_waypoint, goal_index, goal_point.pose.position.x, goal_point.pose.position.y)
+            self.goal = PoseStamped()
+            self.goal.header.frame_id = "map"
+            self.goal.header.stamp = rospy.Time.now()
+            self.goal.pose.position.x = goal_point.pose.position.x
+            self.goal.pose.position.y = goal_point.pose.position.y
+            quaternion = tf.transformations.quaternion_from_euler(0,0,goal_yaw)
+            self.goal.pose.orientation.x = quaternion[0]
+            self.goal.pose.orientation.y = quaternion[1]
+            self.goal.pose.orientation.z = quaternion[2]
+            self.goal.pose.orientation.w = quaternion[3]
+
+            
+            self.goal_pub.publish(self.goal)
+
+    def stop_command(self):
+        stop_goal = PoseStamped()
+        stop_goal.header.frame_id = "map"
+        stop_goal.header.stamp = rospy.Time.now()
+        stop_goal.pose.position.x = self.status_msg.pose.position.x
+        stop_goal.pose.position.y = self.status_msg.pose.position.y
+        stop_goal.pose.orientation.x = self.status_msg.pose.orientation.x
+        stop_goal.pose.orientation.y = self.status_msg.pose.orientation.y
+        stop_goal.pose.orientation.z = self.status_msg.pose.orientation.z
+        stop_goal.pose.orientation.w = self.status_msg.pose.orientation.w
+        self.goal_pub.publish(stop_goal)
+
+
+    def start_racing(self, request):
+        try:
+            if request.start_sign:
+                self.get_current_idx_ = False
+                self.start_sign = True 
+                print("Race Start!")
+            else:
+                self.update_status()
+                self.stop_command()
+                self.start_sign = False 
+                print("Race Stop!")
+            result = True
+        except Exception as e:
+            print("an error occurred: ", e)
+            result = False
+        return StartRacingResponse(result)
+
+
+
+       
     
-# Parameter List
-# /move_base/RegulatedPurePursuitController/cost_scaling_dist
-# /move_base/RegulatedPurePursuitController/cost_scaling_gain
-# /move_base/RegulatedPurePursuitController/desired_linear_vel
-# /move_base/RegulatedPurePursuitController/lookahead_time
-# /move_base/RegulatedPurePursuitController/max_lookahead_dist
-# /move_base/RegulatedPurePursuitController/min_lookahead_dist
-# /move_base/RegulatedPurePursuitController/regulated_linear_scaling_min_radius
-# /move_base/RegulatedPurePursuitController/regulated_linear_scaling_min_speed
-# /move_base/global_costmap/inflation_layer_global/inflation_radius
-# /move_base/local_costmap/inflation_layer_local/inflation_radius
+
         
 if __name__ == '__main__':
     MoveBaseFollower()

@@ -60,6 +60,7 @@
             <param name="robot_frame" value="$(arg namespace)/virtual_base_link" />
             <param name="look_ahead_index"  value="100" />
             <param name="frequency"  value="0.25" />
+            <!-- <param name="start_sign"  value="false" /> -->
             <!-- <remap from="/move_base_simple/goal" to="/$(arg namespace)/move_base_simple/goal" /> -->
         </node>
         
