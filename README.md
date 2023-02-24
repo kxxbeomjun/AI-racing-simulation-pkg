@@ -46,6 +46,11 @@ $ roslaunch erp42_vehicle_gazebo erp42_navigation_multi.launch
 $ roslaunch erp42_vehicle_gazebo erp42_navigation_multi.launch autostart:=true
 ```
 
+### Run Simulator with movebase_follwer (Multiple vehicle, input delay 추가)
+```bash
+$ roslaunch erp42_vehicle_gazebo erp42_navigation_multi_w_delay.launch autostart:=true
+```
+
 ## 그 외 기타 설명
 
 ### 순위 별 속도 관련 
