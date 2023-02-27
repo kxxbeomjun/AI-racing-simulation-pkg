@@ -106,10 +106,10 @@ class RefereeServer:
         try:
 
             ## Stop the cars 
-            request = StartRacingRequest()
-            request.start_sign = False
+            req = StartRacingRequest()
+            req.start_sign = False
             for client in self.movebase_follower_clients:
-                client(request)
+                client(req)
             print("all the cars are stop")
 
             #Wait a second
@@ -118,7 +118,14 @@ class RefereeServer:
             ## Move to the nearest point in the path 
             state_list = list()
             for i in range(self.vehicle_num):
-                pose_idx = int(self.poses_idx[i])
+                if not request.reset_w_distance:
+                    print("reset pose with distance")
+                    if self.ranks[i] == np.max(self.ranks):
+                        pose_idx = int(self.poses_idx[i]) + 2
+                    else:
+                        pose_idx = int(self.poses_idx[i]) - 2
+                else:
+                    pose_idx = int(self.poses_idx[i])
                 state_msg = ModelState()
                 state_msg.model_name = 'erp42_' + str(i+1)
                 state_msg.pose.position.x = self.global_path.poses[pose_idx].pose.position.x

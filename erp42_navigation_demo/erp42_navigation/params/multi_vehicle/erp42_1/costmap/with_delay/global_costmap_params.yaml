@@ -8,7 +8,11 @@ global_costmap:
   transform_tolerance: 0.5
   plugins:
       - {name: static_layer,            type: "costmap_2d::StaticLayer"}
+      - {name: overtake_layer_2, type: "multibot_layer_namespace::OvertakeLayer"}
+      #- {name: overtake_layer_3, type: "multibot_layer_namespace::OvertakeLayer"}
       - {name: multibot_layer, type: "multibot_layer_namespace::MultibotLayer"}
+      - {name: path_layer_2, type: "multibot_layer_namespace::PathLayer"}
+      #- {name: path_layer_3, type: "multibot_layer_namespace::PathLayer"}
       - {name: inflation_layer_global,  type: "costmap_2d::InflationLayer"}
       
       # - {name: obstacle_layer,          type: "spatio_temporal_voxel_layer/SpatioTemporalVoxelLayer"}

@@ -15,5 +15,6 @@ local_costmap:
     - {name: static_layer,            type: "costmap_2d::StaticLayer"}
     - {name: inflation_layer_local,   type: "costmap_2d::InflationLayer"}
     - {name: multibot_layer, type: "multibot_layer_namespace::MultibotLayer"}
+    - {name: multibot_custom_layer, type: "multibot_layer_namespace::MultibotCustomLayer"}
     # - {name: obstacle_layer,          type: "spatio_temporal_voxel_layer/SpatioTemporalVoxelLayer"}
     #- {name: obstacle_layer,          type: "spatio_temporal_voxel_layer_with_inflation/SpatioTemporalVoxelLayerWithInflation"}

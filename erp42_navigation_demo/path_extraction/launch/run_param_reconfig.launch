@@ -1,0 +1,11 @@
+<launch>
+    <!-- For Param Reconfig -->
+    <node pkg="path_extraction" type="param_reconfig.py" name="param_reconfig" output="screen">
+        <param name="path_file_name" value="sunmoon_sim_center.txt" />
+        <param name="path_frame"  value="map" />
+        <param name="vehicle_num"  value="3" />
+        <param name="my_index"  value="1" />
+        <param name="frequency"  value="10" />
+        <param name="overtake_dist"  value="30" />
+    </node>
+</launch>

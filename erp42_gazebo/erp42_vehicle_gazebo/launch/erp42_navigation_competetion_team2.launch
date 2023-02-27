@@ -1,14 +1,15 @@
 <?xml version="1.0"?>
 <launch>
     <!-- Arguments -->
-    <arg name="autostart" default="false" />
-    <arg name="total_vehicle_num" default="2" />
-    <arg name="namespace" default="erp42_$(arg total_vehicle_num)"/>
+    <arg name="autostart" default="true" />
+    <arg name="namespace" default="erp42_2"/>
     <arg name="map_file" default="$(find erp42_vehicle_gazebo)/maps/sunmoon.yaml" />
     <arg name="open_rviz" default="true"/>
     <arg name="move_forward_only" default="true"/>
     <arg name="cmd_vel_topic" default="/$(arg namespace)/cmd_vel_real" />
     <arg name="odom_topic" default="ground_truth_pose" />
+    <arg name="path_file_name" default="sunmoon_sim_center_erp42_2.txt" />
+    <arg name="look_ahead_index"  default="40" />
     
     <group ns="$(arg namespace)">
         
@@ -21,7 +22,7 @@
             <rosparam file="$(find erp42_navigation)/params/multi_vehicle/$(arg namespace)/costmap/with_delay/local_costmap_params.yaml" command="load" />
             <rosparam file="$(find erp42_navigation)/params/multi_vehicle/$(arg namespace)/costmap/with_delay/global_costmap_params.yaml" command="load" />
             <rosparam file="$(find erp42_navigation)/params/move_base_params.yaml" command="load" />
-            <rosparam file="$(find erp42_navigation)/params/planner/regulated_pure_pursuit_planner_params_team1.yaml" command="load" />
+            <rosparam file="$(find erp42_navigation)/params/planner/regulated_pure_pursuit_planner_params_team2.yaml" command="load" />
 
             <param name="base_global_planner" value="global_planner/GlobalPlanner" />
             <param name="planner_frequency" value="10.0" />
@@ -55,21 +56,17 @@
 
         <!-- For autostart -->
         <node pkg="path_extraction" type="movebase_follower.py" name="movebase_follower" if="$(arg autostart)" output="screen">
-            <param name="path_file_name" value="sunmoon_sim_center.txt" />
+            <param name="path_file_name" value="sunmoon_sim_center_erp42_2.txt" />
             <param name="path_frame"  value="map" />
             <param name="robot_frame" value="$(arg namespace)/virtual_base_link" />
-            <param name="look_ahead_index"  value="100" />
+            <param name="look_ahead_index"  value="40" />
             <param name="frequency"  value="0.25" />
             <!-- <param name="start_sign"  value="false" /> -->
-            <!-- <remap from="/move_base_simple/goal" to="/$(arg namespace)/move_base_simple/goal" /> -->
         </node>
         
     </group>
-
-    <!-- recursively start new node -->
-    <include file="$(find erp42_vehicle_gazebo)/launch/erp42_navigation_multi_w_delay.launch" if="$(eval arg('total_vehicle_num') - 1 > 0)">
-        <arg name="total_vehicle_num" value="$(eval arg('total_vehicle_num') - 1)"/>
-        <arg name="autostart" default="$(arg autostart)" />
-    </include>
-
+    
+    <!-- launch run_param_reconfig.launch -->
+    <node pkg="predict_dyn_obs_path" type="predict_Kalman_based.py" name="predict_Kalman_based" output="screen">
+    </node>
 </launch>

@@ -12,12 +12,12 @@ resolution: 0.1
 inflation_layer_global:
   enabled:              true
   cost_scaling_factor:  1.0    # exponential rate at which the obstacle cost drops off (4.0) 
-  inflation_radius:     1.0 # max. distance from an obstacle at which costs are incurred for planning paths. (with TEB :1.0, with PurePursuit: 1.5)
+  inflation_radius:     1.2 # max. distance from an obstacle at which costs are incurred for planning paths. (with TEB :1.0, with PurePursuit: 1.5)
 
 inflation_layer_local:
   enabled:              true
   cost_scaling_factor:  1.0    # exponential rate at which the obstacle cost drops off (4.0) 
-  inflation_radius:     1.0 # max. distance from an obstacle at which costs are incurred for planning paths. (with TEB :1.0, with PurePursuit: 1.5)
+  inflation_radius:     1.2 # max. distance from an obstacle at which costs are incurred for planning paths. (with TEB :1.0, with PurePursuit: 1.5)
 
 static_layer:
   enabled:              true
@@ -30,6 +30,14 @@ multibot_layer:
   enabled:                  true
   total_vehicle: 2
   cost_scaling_factor:  1.0    
-  inflation_radius:     5.0 
-  inflation_angle : 1.3
+  inflation_radius:     3.0 
+  inflation_angle : 1.2
+  search_distance : 20.0
+
+multibot_custom_layer:
+  enabled:                  true
+  total_vehicle: 2
+  cost_scaling_factor:  1.0    
+  inflation_radius:     3.0 
+  inflation_angle : 1.2
   search_distance : 20.0

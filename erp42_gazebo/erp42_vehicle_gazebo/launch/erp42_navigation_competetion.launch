@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<launch>
+    <include file="$(find erp42_vehicle_gazebo)/launch/erp42_navigation_competetion_team1.launch">
+    </include>
+    <include file="$(find erp42_vehicle_gazebo)/launch/erp42_navigation_competetion_team2.launch">
+    </include>
+</launch>

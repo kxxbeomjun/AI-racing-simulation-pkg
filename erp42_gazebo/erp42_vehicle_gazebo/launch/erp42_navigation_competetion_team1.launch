@@ -1,9 +1,8 @@
 <?xml version="1.0"?>
 <launch>
     <!-- Arguments -->
-    <arg name="autostart" default="false" />
-    <arg name="total_vehicle_num" default="2" />
-    <arg name="namespace" default="erp42_$(arg total_vehicle_num)"/>
+    <arg name="autostart" default="true" />
+    <arg name="namespace" default="erp42_1"/>
     <arg name="map_file" default="$(find erp42_vehicle_gazebo)/maps/sunmoon.yaml" />
     <arg name="open_rviz" default="true"/>
     <arg name="move_forward_only" default="true"/>
@@ -58,18 +57,14 @@
             <param name="path_file_name" value="sunmoon_sim_center.txt" />
             <param name="path_frame"  value="map" />
             <param name="robot_frame" value="$(arg namespace)/virtual_base_link" />
-            <param name="look_ahead_index"  value="100" />
+            <param name="look_ahead_index"  value="40" />
             <param name="frequency"  value="0.25" />
             <!-- <param name="start_sign"  value="false" /> -->
-            <!-- <remap from="/move_base_simple/goal" to="/$(arg namespace)/move_base_simple/goal" /> -->
         </node>
         
     </group>
 
-    <!-- recursively start new node -->
-    <include file="$(find erp42_vehicle_gazebo)/launch/erp42_navigation_multi_w_delay.launch" if="$(eval arg('total_vehicle_num') - 1 > 0)">
-        <arg name="total_vehicle_num" value="$(eval arg('total_vehicle_num') - 1)"/>
-        <arg name="autostart" default="$(arg autostart)" />
+    <!-- launch run_param_reconfig.launch -->
+    <include file="$(find path_extraction)/launch/run_param_reconfig.launch">
     </include>
-
 </launch>

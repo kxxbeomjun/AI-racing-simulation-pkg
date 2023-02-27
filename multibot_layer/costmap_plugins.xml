@@ -3,4 +3,12 @@
     <class type="multibot_layer_namespace::MultibotLayer" base_class_type="costmap_2d::Layer">
     </class>
   </library>
+  <library path="lib/libovertake_layer">
+    <class type="multibot_layer_namespace::OvertakeLayer" base_class_type="costmap_2d::Layer">
+    </class>
+  </library>
+  <library path="lib/libpath_layer">
+    <class type="multibot_layer_namespace::PathLayer" base_class_type="costmap_2d::Layer">
+    </class>
+  </library>
 </class_libraries>
