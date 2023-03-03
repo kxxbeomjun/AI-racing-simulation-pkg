@@ -34,30 +34,16 @@ multibot_layer:
   inflation_angle : 1.3
   search_distance : 20.0
 
-overtake_layer_2:
+overtake_layer:
   total_vehicle: 2
   index: 2
   enabled: true
   right_or_left: true
   prohibition_length: 50.0
 
-overtake_layer_3:
-  total_vehicle: 2
-  index: 3
-  enabled: true
-  right_or_left: false
-  prohibition_length: 50.0
-
-path_layer_2:
+path_layer:
   total_vehicle: 2
   index: 2
-  enabled: true
-  prohibition_length: 50.0
-  path_vector: 0
-
-path_layer_3:
-  total_vehicle: 2
-  index: 3
   enabled: true
   prohibition_length: 50.0
   path_vector: 0
