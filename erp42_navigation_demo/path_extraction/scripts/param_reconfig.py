@@ -34,7 +34,6 @@ class ParamReconfig:
     def pose_subscriber(self):
         rospy.Subscriber("/erp42_1/ground_truth_pose", Odometry, self.callback1)
         rospy.Subscriber("/erp42_2/ground_truth_pose", Odometry, self.callback2)
-        #rospy.Subscriber("/erp42_3/ground_truth_pose", Odometry, self.callback3)
 
 
     def callback1(self, data):
@@ -44,10 +43,6 @@ class ParamReconfig:
     def callback2(self, data):
         if data is not None:
             self.poses[1] = data
-
-    def callback3(self, data):
-        if data is not None:
-            self.poses[2] = data
 
 
     def update_status(self):
@@ -81,9 +76,9 @@ class ParamReconfig:
         self.calc_front_or_behind()
         self.calc_path_vector()
         self.calc_estimated_vel()
-        self.calc_distance3()
+        #self.calc_distance3()
         self.overtake_logic()
-        self.calc_angle()
+        #self.calc_angle()
         
 
 
@@ -135,7 +130,7 @@ class ParamReconfig:
                     self.in_distance_counter[i] = 0
 
     #if the front of two vehicles are near and we want to overtake
-    def calc_angle(self):
+    ''' def calc_angle(self):
         if self.car_angle[1]>0 and self.car_angle[2]>0:
             if self.distance[1]>self.distance[2]:
                 self.side_enabled[1]=True
@@ -146,17 +141,17 @@ class ParamReconfig:
             if self.distance[1]>self.distance[2]:
                 self.side_enabled[1]=True
             else:
-                self.side_enabled[2]=True
+                self.side_enabled[2]=True'''
 
     #if the vehicles distance are too close      
-    def calc_distance3(self):
+    ''' def calc_distance3(self):
         for i in range(self.vehicle_num):   
             if i != self.my_index - 1:
                 dx = self.poses[i].pose.pose.position.x - self.my_pose[0]
                 dy = self.poses[i].pose.pose.position.y - self.my_pose[1]
                 self.distance[i] = sqrt(dx*dx + dy*dy)
                 if self.distance[i] < 2:
-                    self.side_enabled[i] = False
+                    self.side_enabled[i] = False'''
 
 
 
@@ -287,32 +282,18 @@ class ParamReconfig:
         if self.front_or_behind[1] == False:
             if self.distance[1]>8:
                 self.front_enabled[1] = False
-        if self.front_or_behind[2] == False:
+        '''if self.front_or_behind[2] == False:
             if self.distance[2]>8:
-                self.front_enabled[2] = False
+                self.front_enabled[2] = False'''
 
         #Overtake flag
-        if self.overtake_flag[1] == True & self.overtake_flag[2] == True:
+        if self.overtake_flag[1] == True:
             self.clients[2].update_configuration({"lookahead_dist":2.5})
             rospy.set_param('/erp42_1/move_base/RegulatedPurePursuitController/lookahead_dist', 2.5)
             self.clients[2].update_configuration({"cost_scaling_dist":2.5})
             rospy.set_param('/erp42_1/move_base/RegulatedPurePursuitController/cost_scaling_dist', 2.5)
             self.clients[2].update_configuration({"cost_scaling_gain":0.2})
             rospy.set_param('/erp42_1/move_base/RegulatedPurePursuitController/cost_scaling_gain', 0.2)
-        elif self.overtake_flag[1] == True & self.overtake_flag[2] == False:
-            self.clients[2].update_configuration({"lookahead_dist":1.0})
-            rospy.set_param('/erp42_1/move_base/RegulatedPurePursuitController/lookahead_dist', 1.0)
-            self.clients[2].update_configuration({"cost_scaling_dist":0.5})
-            rospy.set_param('/erp42_1/move_base/RegulatedPurePursuitController/cost_scaling_dist', 0.5)
-            self.clients[2].update_configuration({"cost_scaling_gain":0.8})
-            rospy.set_param('/erp42_1/move_base/RegulatedPurePursuitController/cost_scaling_gain', 0.8)
-        elif self.overtake_flag[1] == False & self.overtake_flag[2] == True:
-            self.clients[2].update_configuration({"lookahead_dist":1.0})
-            rospy.set_param('/erp42_1/move_base/RegulatedPurePursuitController/lookahead_dist', 1.0)
-            self.clients[2].update_configuration({"cost_scaling_dist":0.5})
-            rospy.set_param('/erp42_1/move_base/RegulatedPurePursuitController/cost_scaling_dist', 0.5)
-            self.clients[2].update_configuration({"cost_scaling_gain":0.8})
-            rospy.set_param('/erp42_1/move_base/RegulatedPurePursuitController/cost_scaling_gain', 0.8)
         else:
             self.clients[2].update_configuration({"lookahead_dist":2.5})
             rospy.set_param('/erp42_1/move_base/RegulatedPurePursuitController/lookahead_dist', 2.5)
@@ -320,60 +301,90 @@ class ParamReconfig:
             rospy.set_param('/erp42_1/move_base/RegulatedPurePursuitController/cost_scaling_dist', 2.5)
             self.clients[2].update_configuration({"cost_scaling_gain":0.2})
             rospy.set_param('/erp42_1/move_base/RegulatedPurePursuitController/cost_scaling_gain', 0.2)
+
+        #Overtake flag
+        '''if self.overtake_flag[1] == True & self.overtake_flag[2] == True:
+            self.clients[4].update_configuration({"lookahead_dist":2.5})
+            rospy.set_param('/erp42_1/move_base/RegulatedPurePursuitController/lookahead_dist', 2.5)
+            self.clients[4].update_configuration({"cost_scaling_dist":2.5})
+            rospy.set_param('/erp42_1/move_base/RegulatedPurePursuitController/cost_scaling_dist', 2.5)
+            self.clients[4].update_configuration({"cost_scaling_gain":0.2})
+            rospy.set_param('/erp42_1/move_base/RegulatedPurePursuitController/cost_scaling_gain', 0.2)
+        elif self.overtake_flag[1] == True & self.overtake_flag[2] == False:
+            self.clients[4].update_configuration({"lookahead_dist":1.0})
+            rospy.set_param('/erp42_1/move_base/RegulatedPurePursuitController/lookahead_dist', 1.0)
+            self.clients[4].update_configuration({"cost_scaling_dist":0.5})
+            rospy.set_param('/erp42_1/move_base/RegulatedPurePursuitController/cost_scaling_dist', 0.5)
+            self.clients[4].update_configuration({"cost_scaling_gain":0.8})
+            rospy.set_param('/erp42_1/move_base/RegulatedPurePursuitController/cost_scaling_gain', 0.8)
+        elif self.overtake_flag[1] == False & self.overtake_flag[2] == True:
+            self.clients[4].update_configuration({"lookahead_dist":1.0})
+            rospy.set_param('/erp42_1/move_base/RegulatedPurePursuitController/lookahead_dist', 1.0)
+            self.clients[4].update_configuration({"cost_scaling_dist":0.5})
+            rospy.set_param('/erp42_1/move_base/RegulatedPurePursuitController/cost_scaling_dist', 0.5)
+            self.clients[4].update_configuration({"cost_scaling_gain":0.8})
+            rospy.set_param('/erp42_1/move_base/RegulatedPurePursuitController/cost_scaling_gain', 0.8)
+        else:
+            self.clients[4].update_configuration({"lookahead_dist":2.5})
+            rospy.set_param('/erp42_1/move_base/RegulatedPurePursuitController/lookahead_dist', 2.5)
+            self.clients[4].update_configuration({"cost_scaling_dist":2.5})
+            rospy.set_param('/erp42_1/move_base/RegulatedPurePursuitController/cost_scaling_dist', 2.5)
+            self.clients[4].update_configuration({"cost_scaling_gain":0.2})
+            rospy.set_param('/erp42_1/move_base/RegulatedPurePursuitController/cost_scaling_gain', 0.2)'''
 
 
         if self.side_enabled[1] == True:
             self.clients[0].update_configuration({"enabled":True})
-            rospy.set_param('/erp42_1/move_base/global_costmap/overtake_layer_2/enabled', True)
+            rospy.set_param('/erp42_1/move_base/global_costmap/overtake_layer/enabled', True)
         else:
             self.clients[0].update_configuration({"enabled":False})
-            rospy.set_param('/erp42_1/move_base/global_costmap/overtake_layer_2/enabled', False)
+            rospy.set_param('/erp42_1/move_base/global_costmap/overtake_layer/enabled', False)
 
-        # if self.side_enabled[2] == True:
-        #     self.clients[1].update_configuration({"enabled":True})
-        #     rospy.set_param('/erp42_1/move_base/global_costmap/overtake_layer_3/enabled', True)
-        # else:
-        #     self.clients[1].update_configuration({"enabled":False})
-        #     rospy.set_param('/erp42_1/move_base/global_costmap/overtake_layer_3/enabled', False)
+        '''if self.side_enabled[2] == True:
+            self.clients[1].update_configuration({"enabled":True})
+            rospy.set_param('/erp42_1/move_base/global_costmap/overtake_layer_3/enabled', True)
+        else:
+            self.clients[1].update_configuration({"enabled":False})
+            rospy.set_param('/erp42_1/move_base/global_costmap/overtake_layer_3/enabled', False)'''
         
         if self.front_enabled[1] == True:
             self.clients[1].update_configuration({"enabled":True})
-            rospy.set_param('/erp42_1/move_base/global_costmap/path_layer_2/enabled', True)
+            rospy.set_param('/erp42_1/move_base/global_costmap/path_layer/enabled', True)
         else:
             self.clients[1].update_configuration({"enabled":False})
-            rospy.set_param('/erp42_1/move_base/global_costmap/path_layer_2/enabled', False)
+            rospy.set_param('/erp42_1/move_base/global_costmap/path_layer/enabled', False)
         
-        # if self.front_enabled[2] == True:
-        #     self.clients[3].update_configuration({"enabled":True})
-        #     rospy.set_param('/erp42_1/move_base/global_costmap/path_layer_3/enabled', True)
-        # else:
-        #     self.clients[3].update_configuration({"enabled":False})
-        #     rospy.set_param('/erp42_1/move_base/global_costmap/path_layer_3/enabled', False)
+        '''if self.front_enabled[2] == True:
+            self.clients[3].update_configuration({"enabled":True})
+            rospy.set_param('/erp42_1/move_base/global_costmap/path_layer_3/enabled', True)
+        else:
+            self.clients[3].update_configuration({"enabled":False})
+            rospy.set_param('/erp42_1/move_base/global_costmap/path_layer_3/enabled', False)''' 
 
         if self.right_or_left[1] == True:
             self.clients[0].update_configuration({"right_or_left":True})
-            rospy.set_param('/erp42_1/move_base/global_costmap/overtake_layer_2/right_or_left', True)
+            rospy.set_param('/erp42_1/move_base/global_costmap/overtake_layer/right_or_left', True)
         else:
             self.clients[0].update_configuration({"right_or_left":False})
-            rospy.set_param('/erp42_1/move_base/global_costmap/overtake_layer_2/right_or_left', False)
+            rospy.set_param('/erp42_1/move_base/global_costmap/overtake_layer/right_or_left', False)
         
-        if self.right_or_left[2] == True:
+        '''if self.right_or_left[2] == True:
             self.clients[1].update_configuration({"right_or_left":True})
             rospy.set_param('/erp42_1/move_base/global_costmap/overtake_layer_3/right_or_left', True)
         else:
             self.clients[1].update_configuration({"right_or_left":False})
-            rospy.set_param('/erp42_1/move_base/global_costmap/overtake_layer_3/right_or_left', False)
+            rospy.set_param('/erp42_1/move_base/global_costmap/overtake_layer_3/right_or_left', False)'''
 
         self.clients[1].update_configuration({"path_vector":self.path_vector[1]})
-        rospy.set_param('/erp42_1/move_base/global_costmap/path_layer_2/path_vector', float(self.path_vector[1]))
+        rospy.set_param('/erp42_1/move_base/global_costmap/path_layer/path_vector', float(self.path_vector[1]))
 
-        self.clients[3].update_configuration({"path_vector":self.path_vector[2]})
-        rospy.set_param('/erp42_1/move_base/global_costmap/path_layer_3/path_vector', float(self.path_vector[2]))
+        '''self.clients[3].update_configuration({"path_vector":self.path_vector[2]})
+        rospy.set_param('/erp42_1/move_base/global_costmap/path_layer_3/path_vector', float(self.path_vector[2]))'''
         
         print("erp42_2\tside_enabled : {0}\n\terp42_2\tfront_enabled : {1}\n\tright_or_left : {2}\n\tfront_or_behind : {3}\n\tdistance : {4}\n\tovertake_flag : {5}\n\testimated_vel_x : {6}\n\testimated_vel_y : {7}\n\tcar_angle: : {8}\n"
             .format(self.side_enabled[1], self.front_enabled[1], self.right_or_left[1], self.front_or_behind[1], self.distance[1], self.overtake_flag[1], self.estimated_vel[1][0], self.estimated_vel[1][1], self.car_angle[1]))
-        print("erp42_3\tside_enabled : {0}\n\terp42_2\tfront_enabled : {1}\n\tright_or_left : {2}\n\tfront_or_behind : {3}\n\tdistance : {4}\n\tovertake_flag : {5}\n\testimated_vel_x : {6}\n\testimated_vel_y : {7}\n\tcar_angle: : {8}\n"
-            .format(self.side_enabled[2], self.front_enabled[2], self.right_or_left[2], self.front_or_behind[2], self.distance[2], self.overtake_flag[2], self.estimated_vel[2][0], self.estimated_vel[2][1], self.car_angle[2]))
+        '''print("erp42_3\tside_enabled : {0}\n\terp42_2\tfront_enabled : {1}\n\tright_or_left : {2}\n\tfront_or_behind : {3}\n\tdistance : {4}\n\tovertake_flag : {5}\n\testimated_vel_x : {6}\n\testimated_vel_y : {7}\n\tcar_angle: : {8}\n"
+            .format(self.side_enabled[2], self.front_enabled[2], self.right_or_left[2], self.front_or_behind[2], self.distance[2], self.overtake_flag[2], self.estimated_vel[2][0], self.estimated_vel[2][1], self.car_angle[2]))'''
         print("-----------------------------------------\n")
 
 
@@ -408,13 +419,10 @@ class ParamReconfig:
         self.estimated_vel = np.zeros((self.vehicle_num, 2))
         self.path_vector = np.zeros(self.vehicle_num)
 
-        self.client_overtake_2 = dynamic_reconfigure.client.Client("erp42_1/move_base/global_costmap/overtake_layer_2", timeout=100, config_callback=self.callback)
-        #self.client_overtake_3 = dynamic_reconfigure.client.Client("erp42_1/move_base/global_costmap/overtake_layer_3", timeout=100, config_callback=self.callback)
-        self.client_path_2 = dynamic_reconfigure.client.Client("erp42_1/move_base/global_costmap/path_layer_2", timeout=100, config_callback=self.callback)
-        #self.client_path_3 = dynamic_reconfigure.client.Client("erp42_1/move_base/global_costmap/path_layer_3", timeout=100, config_callback=self.callback)
+        self.client_overtake = dynamic_reconfigure.client.Client("erp42_1/move_base/global_costmap/overtake_layer", timeout=100, config_callback=self.callback)
+        self.client_path = dynamic_reconfigure.client.Client("erp42_1/move_base/global_costmap/path_layer", timeout=100, config_callback=self.callback)
         self.client_planner = dynamic_reconfigure.client.Client("erp42_1/move_base/RegulatedPurePursuitController",timeout=100, config_callback=self.callback)
-        #self.clients = [self.client_overtake_2, self.client_overtake_3, self.client_path_2, self.client_path_3, self.client_planner]
-        self.clients = [self.client_overtake_2, self.client_path_2, self.client_planner]
+        self.clients = [self.client_overtake, self.client_path, self.client_planner]
 
         #Kalman_filter
         self.dt = 0.05
