@@ -54,11 +54,11 @@ $ roslaunch erp42_vehicle_gazebo erp42_navigation_multi_w_delay.launch autostart
 ## 그 외 기타 설명
 
 ### 순위 별 속도 관련 
-referee_server.py 노드에서 각 차량의 순위별로 낼 수 있는 최대 속도를 1위는 5.0m/s, 그 외 후순위 차량에 대해서는 4.0m/s로 제한시켜 놓았습니다. 해당 노드에서는 아래 파라미터를 순위에 따라 세팅합니다. 
+referee_server.py 노드에서 각 차량의 순위별로 낼 수 있는 최대 속도를 1위는 5.0m/s, 그 외 후순위 차량에 대해서는 4.0m/s로 제한되어 있음. 해당 노드에서는 아래 파라미터를 순위에 따라 세팅.
 ```bash
 (namespace)/move_base/RegulatedPurePursuitController/max_allowed_velocity 
 ```
-이후 regulated_pure_pursuit_controller에서 dynamic_reconfigure로 파라미터를 세팅한 뒤 [applyConstraints 함수 마지막](https://github.com/Yonsei-AI-Racing/erp42_simulator/blob/4b3ab224bdb26972e309f7cbadde3d039cc45c03/erp42_navigation_demo/regulated_pure_pursuit_controller/src/regulated_pure_pursuit_controller.cpp#L459)에 해당 속도를 적용합니다. 
+이후 regulated_pure_pursuit_controller에서 dynamic_reconfigure로 파라미터를 세팅한 뒤 [applyConstraints 함수 마지막](https://github.com/Yonsei-AI-Racing/erp42_simulator/blob/4b3ab224bdb26972e309f7cbadde3d039cc45c03/erp42_navigation_demo/regulated_pure_pursuit_controller/src/regulated_pure_pursuit_controller.cpp#L459)에 해당 속도를 적용.
 Planner 변경하여 사용시 해당 코드 포함해서 작업
 
 [ERP42 simulator trouble shooting/issues](./docs/troubleshooting_issues.md)
