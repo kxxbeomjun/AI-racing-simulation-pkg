@@ -59,7 +59,7 @@ referee_server.py 노드에서 각 차량의 순위별로 낼 수 있는 최대 
 (namespace)/move_base/RegulatedPurePursuitController/max_allowed_velocity 
 ```
 이후 regulated_pure_pursuit_controller에서 dynamic_reconfigure로 파라미터를 세팅한 뒤 [applyConstraints 함수 마지막](https://github.com/Yonsei-AI-Racing/erp42_simulator/blob/4b3ab224bdb26972e309f7cbadde3d039cc45c03/erp42_navigation_demo/regulated_pure_pursuit_controller/src/regulated_pure_pursuit_controller.cpp#L459)에 해당 속도를 적용합니다. 
-Planner 변경하여 사용시 해당 코드 포함해서 작업하시길 바랍니다. 
+Planner 변경하여 사용시 해당 코드 포함해서 작업
 
 [ERP42 simulator trouble shooting/issues](./docs/troubleshooting_issues.md)
 
